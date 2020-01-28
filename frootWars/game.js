@@ -24,7 +24,7 @@ var game = {
                 }
             ],
             init:function () { 
-                var htmk="";
+                var html="";
                 for(var i=0;i<levels.data.length;i++){
                     var level=level.data[i];
                     html+='<input type="button" value="'+(i+1)+'">';
