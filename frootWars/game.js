@@ -52,3 +52,59 @@ var levels = {
 
      }
 }
+
+var loader={
+    loaded:true,
+    loadedCount:0,//Assets que han sido cargados antes
+    totalCount:0,//numero total de assets que es necesario cargar
+    init:function(){
+        //compureba el soporte para sonido
+        var mp3Support,oogSupport;
+        var audio=document.createElement('audio');
+        if(audio.canplayType){
+            mp3Support="" != audio.canPlayType('audio/mpeg');
+            oggSupport="" != audio.canPlayType('audio/ogg;codecs="vorbis"');
+        }else{
+            mp3Support=false;
+            oggSupport=false;
+        }
+        loader.soundFileExtn=oggSupport?".ogg":mp3Support?".mp3":undefined;
+    },
+    loadImage:function(url){
+        this.totalCount++;
+        this.loaded=false;
+        $('#loadingscreen').show();
+        var image=new Image();
+        image.src=urlc;
+        image.onload=loader.itemLoaded;
+        return image;
+    },
+    soundFileExtn:".ogg",
+    loadSound:function(url){
+        this.totalCount++;
+        this.loaded=false;
+        $('#loadingscreen').show();
+        var audio=new Audio();
+        audio.src=url+loader.soundFileExtn;
+        audio.addEventListener("canplaythrough",loader.itemLoaded,false);
+        return audio;
+    },
+    itemLoaded:function(){
+        loader.loadedCount++;
+        $('#loadingmessage').html('Loaded'+loader.loadedCount+'of'+loader.itemLoaded,false);
+        return audio;
+    },
+    itemLoaded:function(){
+        loader.loadedCount++;
+        $('#loadingmessage').html('Loaded'+loader.loadedCount+'of'+loader.totalCount);
+        if(loader.loadedCount===loader.totalCount){
+            loader.loaded=true;
+            $('#loadingscreen').hide();
+            if(loader.onload){
+                loader.onload();
+                loader.onload=undefined;
+            }
+        }
+    }
+
+}
