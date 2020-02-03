@@ -105,6 +105,23 @@ var loader={
                 loader.onload=undefined;
             }
         }
-    }
+    },
 
+    load:function(number){
+        game.currentLevel={number:number,hero:[]};
+        game.score=0;
+        $('#score').html('Score: '+game.score);
+        var level=levels.data[number];
+        game.currentLevel.backgroundImage=loader.loadImage(level.background+".png");
+        game.currentLevel.foregroundImage=loader.loadImage(level.foreground+".png");
+        game.slingshotImage=loader.loadImage("slingshot.png");
+        game.slingshotFrontImage=loader.loadImage("slingshot-front.png");
+
+        if(loader.loaded){
+            game.start();
+        }else{
+            loader.onload=game.start;
+        }
+    }
 }
+
