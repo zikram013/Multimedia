@@ -29,10 +29,11 @@ $(window).load(function(){
 
 var game = {
     init:function(){
+
         levels.init();
         loader.init();
         mouse.init();
-        
+
         $('.gamelayer').hide();
         $('#gamestartscreen').show();
 
@@ -46,9 +47,7 @@ var game = {
         $('#levelselectscreen').show('slow');
     },
 
-    
 	mode:"intro",
-	
 	slingshotX:140,
 	slingshotY:280,
 	start:function(){
@@ -64,9 +63,66 @@ var game = {
 		game.ended = false;
 		game.animationFrame = window.requestAnimationFrame(game.animate,game.canvas);
     },
-    handlePanning:function(){
-        game.offsetLeft++;
+
+    // Maximum panning speed per frame in pixels
+	maxSpeed:3,
+	minOffset:0,
+	maxOffset:300,
+	offsetLeft:0,
+	score:0,
+
+	panTo:function(newCenter){
+		if (Math.abs(newCenter-game.offsetLeft-game.canvas.width/4)>0
+			&& game.offsetLeft <= game.maxOffset && game.offsetLeft >= game.minOffset){
+
+			var deltaX = Math.round((newCenter-game.offsetLeft-game.canvas.width/4)/2);
+			if (deltaX && Math.abs(deltaX)>game.maxSpeed){
+				deltaX = game.maxSpeed*Math.abs(deltaX)/(deltaX);
+			}
+			game.offsetLeft += deltaX;
+		} else {
+
+			return true;
+		}
+		if (game.offsetLeft <game.minOffset){
+			game.offsetLeft = game.minOffset;
+			return true;
+		} else if (game.offsetLeft > game.maxOffset){
+			game.offsetLeft = game.maxOffset;
+			return true;
+		}
+		return false;
     },
+
+    handlePanning:function(){
+        if (game.mode == "intro") {
+            if(game.panTo(700)){
+                game.mode = "load-next-hero";
+            }
+        }
+
+        if(game.mode == "wait-for-firing"){
+            if (mouse.dragging) {
+                game.panTo(mouse.x + game.offsetLeft);
+            } else {
+                game.panTo(game.slingshotX);
+            }
+        }
+        
+        if(game.mode == "load-next-hero"){
+            //----------------
+            game.mode = "wait-for-firing";
+        }
+
+        if (game.mode = "firing") {
+            game.panTo(game.slingshotX);
+        }
+
+        if(game.mode == "fired"){
+
+        }
+    },
+
     animate:function(){
         game.handlePanning();
 
@@ -78,11 +134,8 @@ var game = {
 		if(!game.ended){
 			game.animationFrame = window.requestAnimationFrame(game.animate,game.canvas);
         }
-    },
-
+    }
 };
-
-
 
 var levels = {
     data:[
@@ -111,11 +164,13 @@ var levels = {
             $('#levelselectscreen').hide();
           });
      },
+
      load:function(number){
         game.currentLevel={number:number,hero:[]};
         game.score=0;
         $('#score').html('Score: '+game.score);
         var level=levels.data[number];
+        
         game.currentLevel.backgroundImage=loader.loadImage(level.background+".png");
         game.currentLevel.foregroundImage=loader.loadImage(level.foreground+".png");
         game.slingshotImage=loader.loadImage("slingshot.png");
@@ -129,7 +184,7 @@ var levels = {
     }
 }
 
-var loader={
+var loader = {
     loaded:true,
     loadedCount:0,//Assets que han sido cargados antes
     totalCount:0,//numero total de assets que es necesario cargar
@@ -155,7 +210,6 @@ var loader={
         var image=new Image();
         image.src=url;
         image.onload=loader.itemLoaded;
-        console.log(image);
         return image;
     },
 
@@ -169,11 +223,6 @@ var loader={
         audio.addEventListener("canplaythrough",loader.itemLoaded,false);
         return audio;
     },
-   /* itemLoaded:function(){
-        loader.loadedCount++;
-        $('#loadingmessage').html('Loaded'+loader.loadedCount+'of'+loader.itemLoaded,false);
-        return audio;
-    },*/
     itemLoaded:function(){
         
         loader.loadedCount++;
@@ -187,8 +236,6 @@ var loader={
             }
         }
     },
-
-   
 }
 
 var mouse = {
