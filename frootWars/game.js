@@ -81,7 +81,7 @@ var game = {
 			}
 			game.offsetLeft += deltaX;
 		} else {
-
+            
 			return true;
 		}
 		if (game.offsetLeft <game.minOffset){
@@ -170,7 +170,7 @@ var levels = {
         game.score=0;
         $('#score').html('Score: '+game.score);
         var level=levels.data[number];
-        
+
         game.currentLevel.backgroundImage=loader.loadImage(level.background+".png");
         game.currentLevel.foregroundImage=loader.loadImage(level.foreground+".png");
         game.slingshotImage=loader.loadImage("slingshot.png");
@@ -223,8 +223,8 @@ var loader = {
         audio.addEventListener("canplaythrough",loader.itemLoaded,false);
         return audio;
     },
+
     itemLoaded:function(){
-        
         loader.loadedCount++;
         $('#loadingmessage').html('Loaded'+loader.loadedCount+'of'+loader.totalCount);
         if(loader.loadedCount === loader.totalCount){
@@ -241,7 +241,8 @@ var loader = {
 var mouse = {
 	x:0,
 	y:0,
-	down:false,
+    down:false,
+    dragging:false,
 	init:function(){
 		$('#gamecanvas').mousemove(mouse.mousemovehandler);
 		$('#gamecanvas').mousedown(mouse.mousedownhandler);
@@ -256,7 +257,8 @@ var mouse = {
 
 		if (mouse.down) {
 			mouse.dragging = true;
-		}
+        }
+        
 	},
 	mousedownhandler:function(ev){
 		mouse.down = true;
