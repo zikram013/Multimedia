@@ -97,7 +97,7 @@ var loader={
     itemLoaded:function(){
         loader.loadedCount++;
         $('#loadingmessage').html('Loaded'+loader.loadedCount+'of'+loader.totalCount);
-        if(loader.loadedCount===loader.totalCount){
+        if(loader.loadedCount === loader.totalCount){
             loader.loaded=true;
             $('#loadingscreen').hide();
             if(loader.onload){
