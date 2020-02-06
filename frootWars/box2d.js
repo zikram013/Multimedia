@@ -43,6 +43,16 @@ function animate(){
     world.Step(timeStep,velocityiterations,positionIterations);
     world.ClearForces();
     world.DrawDebugData();
+
+    if(specialBody){
+        drawSpecialBody();
+    }
+
+    if(specialBody && specialBody.GetUserData().life<=0){
+        world.DestroyBody(specialBody);
+        specialBody=undefined;
+        console.log("The special body was destroyed");
+    }
     setTimeout(animate,timeStep);
 }
 
@@ -243,4 +253,33 @@ function listenForContact(){
         }
     };
     world.SetContactListener(listener);
+}
+
+function drawSpecialBody(){
+    var position=specialBody.GetPosition();
+    var angle=specialBody.GetAngle();
+
+    context.translate(position.x*scale,position.y*scale);
+    context.rotate(angle);
+
+    context.fillStyle="rgb(200,150,250);";
+    context.beginPath();
+    context.arc(0,0,30,0,2*Math.PI,false);
+    context.fill();
+
+    context.fillStyle="rgb(255,255,255);";
+    context.fillRect(-15,-15,10,5);
+    context.fillRect(5,-15,10,5);
+
+    context.strokeStyle="rgb(255,255,255);";
+    context.beginPath();
+    if(specialBody.GetUserData().life>100){
+        context.arc(0,0,10,Math.PI,true);
+    }else{
+        context.arc(0,10,10,Math.PI,false);
+    }
+    context.stroke();
+
+    context.rotate(-angle);
+    context.translate(-position.x*scale,-position.y*scale);
 }
