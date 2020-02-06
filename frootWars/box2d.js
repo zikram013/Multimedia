@@ -19,6 +19,8 @@ var timeStep=1/60;
 var velocityiterations=8;
 var positionIterations=3;
 
+var specialBody;
+
 function init(){
     var gravity=new b2Vec2(0,9.8);
     var allowSleep=true;
@@ -31,6 +33,8 @@ function init(){
     createSimplePolygonBody();
     createComplexBody();
     createRevolutionJoint();
+    createSpecialBody();
+    listenForContact();
     setupDebugDraw();
     animate();
 }
@@ -206,4 +210,37 @@ function createRevolutionJoint(){
 
     jointDef.Initialize(body1,body2,jointCenter);
     world.CreateJoint(jointDef);
+}
+
+function createSpecialBody(){
+    var bodyDef=new b2BodyDef;
+    bodyDef.type=b2Body.b2_dynamicBody;
+    bodyDef.position.x=450/scale;
+    bodyDef.position.y=0/scale;
+
+    specialBody=world.CreateBody(bodyDef);
+    specialBody.SetUserData({name:"special",life:250});
+
+    var fixtureDef=new b2FixtureDef;
+    fixtureDef.density=1.0;
+    fixtureDef.friction=0.5;
+    fixtureDef.restitution=0.5;
+
+    fixtureDef.shape=new b2CircleShape(30/scale);
+    var fixture=specialBody.CreateFixture(fixtureDef);
+}
+
+function listenForContact(){
+    var listener=new Box2D.Dynamics.b2ContactListener;
+    listener.PostSolve=function(contact,impulse){
+        var body1=contact.GetFixtureA().GetBody();
+        var body2=contact.GetFixtureB().GetBody();
+
+        if(body1==specialBody || body2==specialBody){
+            var impulseAlongNormal=impulse.normalImpulses[0];
+            specialBody.GetUserData().life-=impulseAlongNormal;
+            console.log("the special body was in a collision with impulse",impulseAlongNormal,"and its life has now become ",specialBody.GetUserData().life);
+        }
+    };
+    world.SetContactListener(listener);
 }
