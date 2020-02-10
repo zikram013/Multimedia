@@ -8,13 +8,13 @@
         <script src="game.js" type="text/javascript" charset="utf-8"></script>
         <link rel="stylesheet" href="styles.css" type="text/css" media="screen" charset="utf-8">
     </head>
-    <body onload="init()">
+    <body onload="init();">
         <div id="gamecontainer">
             <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
             
             <div id="scorescreen" class="gamelayer">
-                <img id="togglemusic" src="sound.png">
-                <img src="prev.png">
+                <img id="togglemusic" src="sound.png" onclick="game.toggleBackgroundMusic();">
+                <img src="prev.png " onclick="game.restartLevel();">
                 <span id="score">Score: 0</span>
             </div>
             
@@ -34,13 +34,14 @@
             <div id="endingscreen" class="gamelayer">
                 <div>
                     <p id="endingmessage">The level is over message</p>
-                    <p id="playcurrentlevel"><img src="prev.png">Replay Currente Level</p>
-                    <p id="playnextlevel"><img src="next.png">Play next level Level</p>
-                    <p id="showLevelScreen"><img src="return.png">Return to Level screen</p>
+                    <p id="playcurrentlevel" onclick="game.restartLevel();"><img src="prev.png">Replay Currente Level</p>
+                    <p id="playnextlevel"onclick="game.startNextLevel();"><img src="next.png">Play next level Level</p>
+                    <p id="showLevelScreen"onclick="game.showLevelScreen();"><img src="return.png">Return to Level screen</p>
                 </div>
             </div>
 
 
         </div>
+        <canvas id="debugcanvas" width="1000" height="480" style="border:1px solid black;"></canvas>
     </body>
 </html>
