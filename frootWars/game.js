@@ -34,13 +34,13 @@ var game = {
         loader.init();
         mouse.init();
 
-        game.backgroundMusic = loader.loadSound('audio/gurdonark-kindergarten');
+        game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
 
-		game.slingshotReleasedSound = loader.loadSound("audio/released");
-		game.bounceSound = loader.loadSound('audio/bounce');
+		game.slingshotReleasedSound = loader.loadSound("released");
+		game.bounceSound = loader.loadSound('bounce');
 		game.breakSound = {
-			"glass":loader.loadSound('audio/glassbreak'),
-			"wood":loader.loadSound('audio/woodbreak')
+			"glass":loader.loadSound('glassbreak'),
+			"wood":loader.loadSound('woodbreak')
 		};
 
 
