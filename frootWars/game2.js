@@ -439,6 +439,30 @@ var levels = {
 				{type:"hero", name:"orange",x:80,y:405},
 				{type:"hero", name:"apple",x:140,y:405},
 			]
+	},
+		{//Tercer nivel
+			foreground:'castle-foreground',
+			background:'clouds-background',
+			entities:[
+				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
+			]
+			
+	},
+		{
+			//Cuarto nivel
+			foreground:'namek-foreground',
+			background:'namek-background',
+			entities:[
+				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
+				//{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:510,y:415,width:100,height:25,isStatic:true},	
+
+				{type:"hero",name:"freezer",x:80,y:405},
+				{type:"villain", name:"fries",x:670,y:405,calories:420},
+				//{type:"villain", name:"burger",x:715,y:155,calories:590},
+			]
 		}
 	],
 
@@ -558,6 +582,15 @@ var entities = {
 			friction:0.5,
 			restitution:0.4,	
 		},
+		
+		"freezer":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		}	
+		
 	},
 	// Tomar la entidad, crear un cuerpo box2d y aÃ±adirlo al mundo
 	create:function(entity){
