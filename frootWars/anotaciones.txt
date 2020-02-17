@@ -1,3 +1,5 @@
 1.En la variable levels se añadiran los nuevos niveles asi como los villanos, heroes y el diseño del mismo
 
-2.La base en y=415
+2.La base en y=415 para largo
+
+3. La base en y=380 para alto

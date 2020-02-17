@@ -457,7 +457,7 @@ var levels = {
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 				//{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:510,y:415,width:100,height:25,isStatic:true},	
+				{type:"block", name:"wood", x:510,y:380,angle:90,width:100,height:25,isStatic:true},	
 
 				{type:"hero",name:"freezer",x:80,y:405},
 				{type:"villain", name:"fries",x:670,y:405,calories:420},
