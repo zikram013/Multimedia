@@ -57,7 +57,8 @@ var game = {
 		game.bounceSound = loader.loadSound('bounce');
 		game.breakSound = {
 			"glass":loader.loadSound('glassbreak'),
-			"wood":loader.loadSound('woodbreak')
+			"wood":loader.loadSound('woodbreak'),
+			"ki-morado":loader.loadSound('dbz-ki')
 		};
 
 
@@ -456,12 +457,34 @@ var levels = {
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
-				//{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:510,y:380,angle:90,width:100,height:25,isStatic:true},	
+
+				//Barrera de ki
+				//{type:"block", name:"ki-morado", x:300,y:305,width:80,height:250},
+
+				//Hace la casa del medio
+				{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:470,y:317.5,width:100,height:25},
+				{type:"block", name:"wood", x:420,y:380,angle:90,width:100,height:25},	
+				{type:"villain", name:"fries",x:480,y:380,calories:420},
+
+				//conexion de la casa con el muro
+				{type:"block", name:"wood", x:470,y:253.5,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:500,y:200,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:600,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:570,y:317.5,width:100,height:25},
+				{type:"block", name:"wood", x:540,y:253.5,angle:90,width:100,height:25},
+				//{type:"block", name:"wood", x:590,y:253.5,angle:90,width:100,height:25},
+
+				//Hacemos la segunda parte
+				{type:"block", name:"wood", x:650,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:650,y:280,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:650,y:180,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:615,y:120,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:515,y:120,width:100,height:25,isStatic:true},
 
 				{type:"hero",name:"freezer",x:80,y:405},
-				{type:"villain", name:"fries",x:670,y:405,calories:420},
-				//{type:"villain", name:"burger",x:715,y:155,calories:590},
+				
+				{type:"villain", name:"burger",x:715,y:405,calories:590},
 			]
 		}
 	],
@@ -529,6 +552,11 @@ var entities = {
 			density:0.7,
 			friction:0.4,
 			restitution:0.4,
+		},
+		"ki-morado":{
+			density:3.0,
+			friction:1.5,
+			restitution:0.2,
 		},
 		"dirt":{
 			density:3.0,
