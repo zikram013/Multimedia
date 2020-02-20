@@ -53,6 +53,8 @@ var game = {
 		//http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
 		game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
 
+		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
+
 		game.slingshotReleasedSound = loader.loadSound("released");
 		game.bounceSound = loader.loadSound('bounce');
 		//sonido colision
@@ -76,8 +78,22 @@ var game = {
 	},	  
 	startBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
-		game.backgroundMusic.play();
-		toggleImage.src="sound.png";	
+		//game.backgroundMusic.play();
+		//toggleImage.src="sound.png";	
+		for (var i=1; i <= levels[i]; i++) {
+
+			if(!levels[4]){
+				game.backgroundMusic.play();
+				toggleImage.src="sound.png";
+				//html += '<input type="button" value="'+(i+1)+'">';
+			} else{
+				game.backgroundMusicNamek.play();
+				toggleImage.src="sound.png";
+				//html += '<input type="button" value="'+(i+1)+'">';
+			}
+		}
+			
+		
 	},
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
@@ -458,6 +474,8 @@ var levels = {
 			//Cuarto nivel
 			foreground:'namek-foreground',
 			background:'namek-background',
+			//sound:'luzfuegodestruccion',
+
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
@@ -526,6 +544,9 @@ var levels = {
 		//Cargar las imÃ¡genes de fondo, primer plano y honda
 		game.currentLevel.backgroundImage = loader.loadImage(level.background+".png");
 		game.currentLevel.foregroundImage = loader.loadImage(level.foreground+".png");
+		
+		//game.currentLevel.Sound=loader.loadSound(level.sound+".ogg");
+
 		game.slingshotImage = loader.loadImage("slingshot.png");
 		game.slingshotFrontImage = loader.loadImage("slingshot-front.png");
 
