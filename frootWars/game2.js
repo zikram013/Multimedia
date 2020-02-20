@@ -459,32 +459,33 @@ var levels = {
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 
 				//Barrera de ki
-				//{type:"block", name:"ki-morado", x:300,y:305,width:80,height:250},
+				{type:"block", name:"ki-morado", x:350,y:330,width:40,height:200,isStatic:true},
 
 				//Hace la casa del medio
 				{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:470,y:317.5,width:100,height:25},
 				{type:"block", name:"wood", x:420,y:380,angle:90,width:100,height:25},	
-				{type:"villain", name:"fries",x:480,y:380,calories:420},
+				{type:"villain", name:"fries",x:480,y:405,calories:420,isStatic:true},
 
 				//conexion de la casa con el muro
 				{type:"block", name:"wood", x:470,y:253.5,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:500,y:200,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:520,y:190,width:100,height:25},
 				{type:"block", name:"wood", x:600,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:570,y:317.5,width:100,height:25},
-				{type:"block", name:"wood", x:540,y:253.5,angle:90,width:100,height:25},
-				//{type:"block", name:"wood", x:590,y:253.5,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:565,y:253.5,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:517.5,y:253.5,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:480,y:160,angle:135,width:100,height:25,isStatic:true},
 
 				//Hacemos la segunda parte
-				{type:"block", name:"wood", x:650,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:650,y:280,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:650,y:180,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:615,y:120,width:100,height:25,isStatic:true},
-				{type:"block", name:"wood", x:515,y:120,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:715,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:715,y:280,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:715,y:180,angle:90,width:100,height:25},
+				{type:"block", name:"wood", x:675,y:120,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:575,y:120,width:100,height:25,isStatic:true},
 
 				{type:"hero",name:"freezer",x:80,y:405},
 				
-				{type:"villain", name:"burger",x:715,y:405,calories:590},
+				{type:"villain", name:"burger",x:670,y:405,calories:590},
 			]
 		}
 	],
