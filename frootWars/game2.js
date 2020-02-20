@@ -55,10 +55,14 @@ var game = {
 
 		game.slingshotReleasedSound = loader.loadSound("released");
 		game.bounceSound = loader.loadSound('bounce');
+		//sonido colision
+		game.kiSound=loader.loadSound('dbz-ki');
+
+
 		game.breakSound = {
 			"glass":loader.loadSound('glassbreak'),
 			"wood":loader.loadSound('woodbreak'),
-			"ki-morado":loader.loadSound('dbz-ki')
+			
 		};
 
 
@@ -459,7 +463,7 @@ var levels = {
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 
 				//Barrera de ki
-				{type:"block", name:"ki-morado", x:350,y:330,width:40,height:200,isStatic:true},
+				{type:"ki", name:"ki-morado", x:350,y:330,width:40,height:200,isStatic:true},
 
 				//Hace la casa del medio
 				{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
@@ -629,6 +633,14 @@ var entities = {
 			return;
 		}	
 		switch(entity.type){
+
+			case "ki": // entidad ki
+				entity.shape = "rectangle";	
+				entity.sprite = loader.loadImage(entity.name+".png");						
+				entity.kiSound = game.kiSound;
+				box2d.createRectangle(entity,definition);				
+				break;
+
 			case "block": // RectÃ¡ngulos simples
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
@@ -670,6 +682,12 @@ var entities = {
 		game.context.translate(position.x*box2d.scale-game.offsetLeft,position.y*box2d.scale);
 		game.context.rotate(angle);
 		switch (entity.type){
+			//dibujo ki
+			case "ki":
+				game.context.drawImage(entity.sprite,0,0,entity.sprite.width,entity.sprite.height,
+						-entity.width/2-1,-entity.height/2-1,entity.width+2,entity.height+2);	
+			break;
+
 			case "block":
 				game.context.drawImage(entity.sprite,0,0,entity.sprite.width,entity.sprite.height,
 						-entity.width/2-1,-entity.height/2-1,entity.width+2,entity.height+2);	
@@ -717,8 +735,10 @@ var box2d = {
 		listener.PostSolve = function(contact,impulse){
 			var body1 = contact.GetFixtureA().GetBody();
 			var body2 = contact.GetFixtureB().GetBody();
+			var body3= contact.GetFixtureA().GetBody();
 			var entity1 = body1.GetUserData();
 			var entity2 = body2.GetUserData();
+			var entity3 = body3.GetUserData();
 
 			var impulseAlongNormal = Math.abs(impulse.normalImpulses[0]);
 			// Este listener es llamado con mucha frecuencia. Filtra los impulsos muy prqueÃ±os.
@@ -740,6 +760,10 @@ var box2d = {
 
 				if (entity2.bounceSound){
 					entity2.bounceSound.play();
+				}
+				
+				if (entity3.kiSound){
+					entity3.kiSound.play();
 				}
 			} 
 		};
@@ -805,7 +829,36 @@ var box2d = {
 
 			var fixture = body.CreateFixture(fixtureDef);
 			return body;
-	},  
+	}/*, 
+	
+	createRectangle2:function(entity,definition){
+		var bodyDef = new b2BodyDef;
+		if(entity.isStatic){
+			bodyDef.type = b2Body.b2_staticBody;
+		} else {
+			bodyDef.type = b2Body.b2_dynamicBody;
+		}
+		
+		bodyDef.position.x = entity.x/box2d.scale;
+		bodyDef.position.y = entity.y/box2d.scale;
+		if (entity.angle) {
+			bodyDef.angle = Math.PI*entity.angle/180;
+		}
+		
+		var fixtureDef = new b2FixtureDef;
+		fixtureDef.density = definition.density;
+		fixtureDef.friction = definition.friction;
+		fixtureDef.restitution = definition.restitution;
+
+		fixtureDef.shape = new b2PolygonShape;
+		fixtureDef.shape.SetAsBox(entity.width/2/box2d.scale,entity.height/2/box2d.scale);
+		
+		var body = box2d.world.CreateBody(bodyDef);	
+		body.SetUserData(entity);
+		
+		var fixture = body.CreateFixture(fixtureDef);
+		return body;
+}*/
 }
 
 
