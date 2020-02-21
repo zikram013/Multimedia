@@ -54,6 +54,7 @@ var game = {
 		game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
 
 		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
+		game.backgroundMusicCell=loader.loadSound('dbgt');
 
 		game.slingshotReleasedSound = loader.loadSound("released");
 		game.bounceSound = loader.loadSound('bounce');
@@ -81,6 +82,11 @@ var game = {
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.play();
 			toggleImage.src="sound.png";
+
+		}else if(game.currentLevel.number==2){
+			game.backgroundMusicCell.play();
+			toggleImage.src="sound.png";
+		
 		}else{
 			game.backgroundMusic.play();
 			toggleImage.src="sound.png";
@@ -94,6 +100,9 @@ var game = {
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.pause();
 			game.backgroundMusicNamek.currTime=0;
+		}else if(game.currentLevel.number==2){
+			game.backgroundMusicCell.pause();
+			game.backgroundMusicCell.currTime=0;
 		}else{
 			game.backgroundMusic.pause();
 			game.backgroundMusic.currentTime = 0; 
@@ -116,6 +125,13 @@ var game = {
 		}else{
 			game.backgroundMusicNamek.pause();
 			$("#togglemusic")[0].src="nosound.png";
+		}
+		if(game.backgroundMusicCell.paused){
+			game.backgroundMusicCell.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusicCell.pause();
+			$("#togglemusic")[0].src="sound.png";
 		}
 
 	},
@@ -479,17 +495,27 @@ var levels = {
 				//base
 				{type:"block", name:"wood", x:470,y:417,width:100,height:25},
 				//primera parte diagonal y su apoyo
-				{type:"block", name:"wood", x:514,y:360,angle:135,width:100,height:25,isStatic:true},
-				{type:"block", name:"wood", x:565,y:385,angle:90,width:88,height:25,isStatic:true},
+				{type:"block", name:"wood", x:514,y:360,angle:135,width:100,height:25},
+				{type:"block", name:"wood", x:565,y:385,angle:90,width:88,height:25},
 				//segunda parte diagonal y su apoyo
-				{type:"block", name:"wood", x:427,y:360,angle:45,width:100,height:25,isStatic:true},
-				{type:"block", name:"wood", x:375,y:385,angle:90,width:88,height:25,isStatic:true},
-				//tercera parte diagonal hacia arriba y apoyo
+				{type:"block", name:"wood", x:427,y:360,angle:45,width:100,height:25},
+				{type:"block", name:"wood", x:375,y:385,angle:90,width:88,height:25},
+				//tercera parte casita cercana
+				{type:"block", name:"wood", x:650,y:385,angle:90,width:88,height:25},
+				{type:"block", name:"wood", x:612,y:330,width:100,height:25},
+				//cuarta parte casita alta
+				{type:"block", name:"wood", x:750,y:385,angle:90,width:88,height:25},
+				{type:"block", name:"wood", x:750,y:297,angle:90,width:88,height:25},
+				{type:"block", name:"wood", x:698,y:240,width:130,height:25},
+				{type:"block", name:"wood", x:650,y:285,angle:90,width:65,height:25},
+				//tejado de la parte cuarta
+				{type:"block", name:"wood", x:675,y:175,angle:110,width:100,height:25},
+				{type:"block", name:"wood", x:730,y:175,angle:70,width:100,height:25},
 
 				//heroes
 				{type:"hero",name:"cell",x:80,y:405},
 				//villanos
-				{type:"villain", name:"burger",x:670,y:405,calories:590},
+				{type:"villain", name:"burger",x:900,y:150,calories:590,isStatic:true},
 			]
 			
 	},
@@ -519,7 +545,7 @@ var levels = {
 				{type:"block", name:"wood", x:570,y:317.5,width:100,height:25},
 				{type:"block", name:"wood", x:565,y:253.5,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:517.5,y:253.5,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:480,y:160,angle:135,width:100,height:25},
+				//{type:"block", name:"wood", x:485,y:160,width:100,height:25,isStatic:true},
 
 				//Hacemos la segunda parte
 				{type:"block", name:"wood", x:715,y:380,angle:90,width:100,height:25},
