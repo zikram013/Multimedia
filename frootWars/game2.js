@@ -479,12 +479,13 @@ var levels = {
 				//base
 				{type:"block", name:"wood", x:470,y:417,width:100,height:25},
 				//primera parte diagonal y su apoyo
-				{type:"block", name:"wood", x:520,y:360,angle:135,width:100,height:25},
-				{type:"block", name:"wood", x:570,y:385,angle:90,width:88,height:25},
+				{type:"block", name:"wood", x:514,y:360,angle:135,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:565,y:385,angle:90,width:88,height:25,isStatic:true},
 				//segunda parte diagonal y su apoyo
-				{type:"block", name:"wood", x:430,y:360,angle:45,width:100,height:25},
-				{type:"block", name:"wood", x:380,y:385,angle:90,width:88,height:25},
-				
+				{type:"block", name:"wood", x:427,y:360,angle:45,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:375,y:385,angle:90,width:88,height:25,isStatic:true},
+				//tercera parte diagonal hacia arriba y apoyo
+
 				//heroes
 				{type:"hero",name:"cell",x:80,y:405},
 				//villanos
@@ -496,7 +497,7 @@ var levels = {
 			//Cuarto nivel
 			foreground:'namek-foreground',
 			background:'namek-background',
-			//sound:'luzfuegodestruccion',
+			
 
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
