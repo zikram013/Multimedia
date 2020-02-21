@@ -481,7 +481,10 @@ var levels = {
 				//primera parte diagonal y su apoyo
 				{type:"block", name:"wood", x:520,y:360,angle:135,width:100,height:25},
 				{type:"block", name:"wood", x:570,y:385,angle:90,width:88,height:25},
-
+				//segunda parte diagonal y su apoyo
+				{type:"block", name:"wood", x:430,y:360,angle:45,width:100,height:25},
+				{type:"block", name:"wood", x:380,y:385,angle:90,width:88,height:25},
+				
 				//heroes
 				{type:"hero",name:"cell",x:80,y:405},
 				//villanos
