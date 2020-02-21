@@ -80,36 +80,65 @@ var game = {
 		var toggleImage = $("#togglemusic")[0];	
 		//game.backgroundMusic.play();
 		//toggleImage.src="sound.png";	
-		for (var i=1; i <= levels[i]; i++) {
-
-			if(!levels[4]){
+		/*for (var i=0; i < levels.data.length-1; i++) {
+			var level = levels.data[i];
+			if(!levels.data[3]){
 				game.backgroundMusic.play();
 				toggleImage.src="sound.png";
-				//html += '<input type="button" value="'+(i+1)+'">';
+				
 			} else{
 				game.backgroundMusicNamek.play();
 				toggleImage.src="sound.png";
-				//html += '<input type="button" value="'+(i+1)+'">';
+				
 			}
+		}*/
+		/*if(!levels.data[3]){
+			game.backgroundMusic.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusicNamek.play();
+			toggleImage.src="sound.png";
+		}*/
+		if(game.currentLevel.number==3){
+			game.backgroundMusicNamek.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusic.play();
+			toggleImage.src="sound.png";
 		}
+
 			
-		
 	},
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="nosound.png";	
-		game.backgroundMusic.pause();
-		game.backgroundMusic.currentTime = 0; // Ir al comienzo de la canciÃ³n
+		if(game.currentLevel.number==3){
+			game.backgroundMusicNamek.pause();
+			game.backgroundMusicNamek.currTime=0;
+		}else{
+			game.backgroundMusic.pause();
+			game.backgroundMusic.currentTime = 0; 
+		}
+		
 	},
 	toggleBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];
 		if(game.backgroundMusic.paused){
 			game.backgroundMusic.play();
-			toggleImage.src="sound.png";
+			toggleImage.src="sound.png";	
 		} else {
 			game.backgroundMusic.pause();	
 			$("#togglemusic")[0].src="nosound.png";
 		}
+		
+		if(game.backgroundMusicNamek.paused){
+			game.backgroundMusicNamek.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusicNamek.pause();
+			$("#togglemusic")[0].src="nosound.png";
+		}
+
 	},
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
@@ -850,36 +879,7 @@ var box2d = {
 
 			var fixture = body.CreateFixture(fixtureDef);
 			return body;
-	}/*, 
-	
-	createRectangle2:function(entity,definition){
-		var bodyDef = new b2BodyDef;
-		if(entity.isStatic){
-			bodyDef.type = b2Body.b2_staticBody;
-		} else {
-			bodyDef.type = b2Body.b2_dynamicBody;
-		}
-		
-		bodyDef.position.x = entity.x/box2d.scale;
-		bodyDef.position.y = entity.y/box2d.scale;
-		if (entity.angle) {
-			bodyDef.angle = Math.PI*entity.angle/180;
-		}
-		
-		var fixtureDef = new b2FixtureDef;
-		fixtureDef.density = definition.density;
-		fixtureDef.friction = definition.friction;
-		fixtureDef.restitution = definition.restitution;
-
-		fixtureDef.shape = new b2PolygonShape;
-		fixtureDef.shape.SetAsBox(entity.width/2/box2d.scale,entity.height/2/box2d.scale);
-		
-		var body = box2d.world.CreateBody(bodyDef);	
-		body.SetUserData(entity);
-		
-		var fixture = body.CreateFixture(fixtureDef);
-		return body;
-}*/
+	}
 }
 
 
