@@ -475,6 +475,17 @@ var levels = {
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
+
+				//base
+				{type:"block", name:"wood", x:470,y:417,width:100,height:25},
+				//primera parte diagonal y su apoyo
+				{type:"block", name:"wood", x:520,y:360,angle:135,width:100,height:25},
+				{type:"block", name:"wood", x:570,y:385,angle:90,width:88,height:25},
+
+				//heroes
+				{type:"hero",name:"cell",x:80,y:405},
+				//villanos
+				{type:"villain", name:"burger",x:670,y:405,calories:590},
 			]
 			
 	},
@@ -504,7 +515,7 @@ var levels = {
 				{type:"block", name:"wood", x:570,y:317.5,width:100,height:25},
 				{type:"block", name:"wood", x:565,y:253.5,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:517.5,y:253.5,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:480,y:160,angle:135,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:480,y:160,angle:135,width:100,height:25},
 
 				//Hacemos la segunda parte
 				{type:"block", name:"wood", x:715,y:380,angle:90,width:100,height:25},
@@ -645,7 +656,7 @@ var entities = {
 			restitution:0.4,	
 		},
 		
-		"freezer":{
+		"freezer":{//ponerle vida y tratarle de villano
 			shape:"circle",
 			radius:30,
 			density:2,
@@ -653,8 +664,15 @@ var entities = {
 			restitution:0.4,
 		},
 
-		"cell":{
-			
+		"cell":{//ponerle la vida y tratarle de villano
+			shape:"circle",
+			//fullHealth:80,
+			//width:50,
+			//height:50,
+			radius:30,
+			density:1,
+			friction:0.5,
+			restitution:0.6,	
 		}
 		
 	},
