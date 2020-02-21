@@ -78,27 +78,6 @@ var game = {
 	},	  
 	startBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
-		//game.backgroundMusic.play();
-		//toggleImage.src="sound.png";	
-		/*for (var i=0; i < levels.data.length-1; i++) {
-			var level = levels.data[i];
-			if(!levels.data[3]){
-				game.backgroundMusic.play();
-				toggleImage.src="sound.png";
-				
-			} else{
-				game.backgroundMusicNamek.play();
-				toggleImage.src="sound.png";
-				
-			}
-		}*/
-		/*if(!levels.data[3]){
-			game.backgroundMusic.play();
-			toggleImage.src="sound.png";
-		}else{
-			game.backgroundMusicNamek.play();
-			toggleImage.src="sound.png";
-		}*/
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.play();
 			toggleImage.src="sound.png";
@@ -130,7 +109,7 @@ var game = {
 			game.backgroundMusic.pause();	
 			$("#togglemusic")[0].src="nosound.png";
 		}
-		
+
 		if(game.backgroundMusicNamek.paused){
 			game.backgroundMusicNamek.play();
 			toggleImage.src="sound.png";
