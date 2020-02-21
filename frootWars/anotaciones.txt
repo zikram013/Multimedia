@@ -5,3 +5,9 @@
 3. La base en y=380 para alto
 
 4.Villano a y=405
+
+5. diseño de nivel numero 3 en proceso (realizando)
+
+6.Una vez diseñado el nivel 3 retocar los niveles 1 y 2 (fondos y personajes)
+
+7.Actualizar musica a todos los niveles

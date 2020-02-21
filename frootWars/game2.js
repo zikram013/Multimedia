@@ -470,7 +470,7 @@ var levels = {
 			]
 	},
 		{//Tercer nivel
-			foreground:'castle-foreground',
+			foreground:'Cell-foreground',
 			background:'clouds-background',
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
@@ -651,7 +651,11 @@ var entities = {
 			density:2,
 			friction:0.5,
 			restitution:0.4,
-		}	
+		},
+
+		"cell":{
+			
+		}
 		
 	},
 	// Tomar la entidad, crear un cuerpo box2d y aÃ±adirlo al mundo
