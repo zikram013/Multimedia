@@ -1,9 +1,11 @@
 #gamecontainer{
     width: 640px;
     height: 480px;
-    background: url(splashscreen.png);
+    background: url(maindragonball.png);
     border: 1px solid black;
 }
+
+
 
 .gamelayer{
     width: 640px;
@@ -15,7 +17,9 @@
 /*Pantalla de inicio del juego*/
 #gamestartscreen{
     padding-top: 250px;
+
     text-align: center;
+  
 }
 
 #gamestartscreen img{
@@ -23,9 +27,15 @@
     cursor:pointer;
 }
 
+
+
 #levelselectscreen{
+    background-image: url(gokuandvegeta.png);
+    width: 590px;
+    height: 330px;
     padding-top:150px;
     padding-left: 50px;
+    
 }
 
 #levelselectscreen input{

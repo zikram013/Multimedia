@@ -138,6 +138,9 @@ var game = {
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
+		//$('#gamecontainer').css('background', 'gokuandvegeta.png').show;
+		/*var imagen = document.getElementById("gamecontainer");
+		gamecontainer.style.background = "gokuandvegeta.png";*/
 	},
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
