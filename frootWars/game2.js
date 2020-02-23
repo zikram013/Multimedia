@@ -51,10 +51,12 @@ var game = {
 	
 		//"Kindergarten" by Gurdonark
 		//http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
-		game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
+		//game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
 
+		game.backgroundMusicSaiyan=loader.loadSound('dragonballzbudokaitenkaichi');
 		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
 		game.backgroundMusicCell=loader.loadSound('dbgt');
+		game.backgroundMusicBuu=loader.loadSound('dragonballzbudokai3');
 
 		game.slingshotReleasedSound = loader.loadSound("released");
 		game.bounceSound = loader.loadSound('bounce');
@@ -87,10 +89,16 @@ var game = {
 			game.backgroundMusicCell.play();
 			toggleImage.src="sound.png";
 		
-		}else{
+		}else if(game.currentLevel.number==1){
+			game.backgroundMusicBuu.play();
+			toggleImage.src="sound.png";
+		}else if(game.currentLevel.number==0){
+			game.backgroundMusicSaiyan.play();
+			toggleImage.src="sound.png";
+		}/*else{
 			game.backgroundMusic.play();
 			toggleImage.src="sound.png";
-		}
+		}*/
 
 			
 	},
@@ -103,10 +111,17 @@ var game = {
 		}else if(game.currentLevel.number==2){
 			game.backgroundMusicCell.pause();
 			game.backgroundMusicCell.currTime=0;
-		}else{
+		}else if(game.currentLevel.number==1){
+			game.backgroundMusicBuu.pause();
+			game.backgroundMusicBuu.currentTime=0;
+		}else if(game.currentLevel.number==0){
+			game.backgroundMusicSaiyan.pause();
+			game.backgroundMusicSaiyan.currentTime=0;
+		}/*
+		else{
 			game.backgroundMusic.pause();
 			game.backgroundMusic.currentTime = 0; 
-		}
+		}*/
 		
 	},
 	toggleBackgroundMusic:function(){
@@ -126,11 +141,28 @@ var game = {
 			game.backgroundMusicNamek.pause();
 			$("#togglemusic")[0].src="nosound.png";
 		}
+
+		if(game.backgroundMusicBuu.paused){
+			game.backgroundMusicBuu.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusicBuu.pause();
+			$("#togglemusic")[0].src="nosound.png";
+		}
+
 		if(game.backgroundMusicCell.paused){
 			game.backgroundMusicCell.play();
 			toggleImage.src="sound.png";
 		}else{
 			game.backgroundMusicCell.pause();
+			$("#togglemusic")[0].src="sound.png";
+		}
+
+		if(game.backgroundMusicSaiyan.paused){
+			game.backgroundMusicSaiyan.play();
+			toggleImage.src="sound.png";
+		}else{
+			game.backgroundMusicSaiyan.pause();
 			$("#togglemusic")[0].src="sound.png";
 		}
 
@@ -444,7 +476,7 @@ var levels = {
 	// Datos de nivel
 	data:[
 	 {   // Primer nivel 
-		foreground:'desert-foreground',
+		foreground:'PaprikaWasteland-foreground',
 		background:'clouds-background',
 		entities:[
 			{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
@@ -463,7 +495,7 @@ var levels = {
 		]
 	 },
 		{   // Segundo nivel
-			foreground:'desert-foreground',
+			foreground:'planetaSagrado-foreground',
 			background:'clouds-background',
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},

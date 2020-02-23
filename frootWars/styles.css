@@ -41,8 +41,9 @@
 #levelselectscreen input{
     margin:20px;
     cursor:pointer;
-    background: url(level.png)no-repeat;
-    color:yellow;
+    background: url(bolanivel.png)no-repeat;
+    border-radius: 100%;
+    color:black;
     font-size:20px;
     width: 64px;
     height: 64px;
