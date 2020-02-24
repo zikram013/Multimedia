@@ -126,13 +126,13 @@ var game = {
 	},
 	toggleBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];
-		if(game.backgroundMusic.paused){
+		/*if(game.backgroundMusic.paused){
 			game.backgroundMusic.play();
 			toggleImage.src="sound.png";	
 		} else {
 			game.backgroundMusic.pause();	
 			$("#togglemusic")[0].src="nosound.png";
-		}
+		}*/
 
 		if(game.backgroundMusicNamek.paused){
 			game.backgroundMusicNamek.play();
@@ -489,9 +489,17 @@ var levels = {
 			{type:"block", name:"wood", x:620,y:380,angle:90,width:100,height:25},
 			{type:"block", name:"glass", x:620,y:280,angle:90,width:100,height:25},								
 			{type:"villain", name:"fries", x:620,y:205,calories:420},				
-
+			/*
 			{type:"hero", name:"orange",x:80,y:405},
 			{type:"hero", name:"apple",x:140,y:405},
+			*/
+			{type:"hero",name:"SagaSaiyanGohan",x:80,y:405},
+			{type:"hero",name:"carapiccolo2",x:140,y:405},
+			{type:"hero",name:"krilinRecortadoCircular",x:200,y:405},
+			{type:"hero",name:"chaosCaraRecortada",x:260,y:405},
+			{type:"hero",name:"yamchacararecortada",x:320,y:405},
+			{type:"hero",name:"tenshinhancararecortada",x:380,y:405},
+			{type:"hero",name:"caragokurecortadacircular",x:460,y:405},
 		]
 	 },
 		{   // Segundo nivel
@@ -515,9 +523,10 @@ var levels = {
 				{type:"villain", name:"fries",x:670,y:405,calories:420},
 				{type:"villain", name:"sodacan",x:765,y:400,calories:150},
 
-				{type:"hero", name:"strawberry",x:30,y:415},
-				{type:"hero", name:"orange",x:80,y:405},
-				{type:"hero", name:"apple",x:140,y:405},
+				{type:"hero", name:"Gotenksrecortadocircular",x:80,y:415},
+				{type:"hero", name:"gohanadultorecortadacircular",x:140,y:405},
+				{type:"hero", name:"caraVegetaSuperSaiyanrecortadacircular",x:200,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:260,y:405},
 			]
 	},
 		{//Tercer nivel
@@ -548,9 +557,13 @@ var levels = {
 				{type:"block", name:"wood", x:730,y:175,angle:70,width:100,height:25},
 
 				//heroes
-				{type:"hero",name:"cell",x:80,y:405},
+				{type:"hero",name:"caragohanssj2recortecircular",x:240,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:140,y:405},
+				{type:"hero",name:"caraVegetaSuperSaiyanrecortadacircular",x:200,y:405},
+				{type:"hero",name:"trunksrecortadacircular",x:80,y:405},
+
 				//villanos
-				{type:"villain", name:"burger",x:900,y:150,calories:590,isStatic:true},
+				{type:"villain", name:"cell",x:900,y:150,calories:590,isStatic:true},
 			]
 			
 	},
@@ -589,9 +602,13 @@ var levels = {
 				{type:"block", name:"wood", x:675,y:120,width:100,height:25,isStatic:true},
 				{type:"block", name:"wood", x:575,y:120,width:100,height:25,isStatic:true},
 
-				{type:"hero",name:"freezer",x:80,y:405},
+				{type:"hero",name:"krilinRecortadoCircular",x:80,y:405},
+				{type:"hero",name:"SagaSaiyanGohan",x:140,y:405},
+				{type:"hero",name:"caravegetarecortadacircular",x:200,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:260,y:405},
+
 				
-				{type:"villain", name:"burger",x:670,y:405,calories:590},
+				{type:"villain", name:"freezer",x:670,y:405,calories:1000},
 			]
 		}
 	],
@@ -720,8 +737,119 @@ var entities = {
 			friction:0.5,
 			restitution:0.4,	
 		},
+		/*Personajes de bola de dragon*/
+		"Gotenksrecortadocircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
 		
+		"gohanadultorecortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"trunksrecortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,	
+		},
+
+		"caraVegetaSuperSaiyanrecortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"caragohanssj2recortecircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"caragokusaiyan1recortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"caravegetarecortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"caragokurecortadacircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
 		"freezer":{//ponerle vida y tratarle de villano
+			shape:"circle",
+			fullHealth:100,
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+		"carapiccolo2":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"krilinRecortadoCircular":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"SagaSaiyanGohan":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"chaosCaraRecortada":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+
+		"yamchacararecortada":{
+			shape:"circle",
+			radius:30,
+			density:2,
+			friction:0.5,
+			restitution:0.4,
+		},
+		"tenshinhancararecortada":{
 			shape:"circle",
 			radius:30,
 			density:2,
@@ -731,7 +859,7 @@ var entities = {
 
 		"cell":{//ponerle la vida y tratarle de villano
 			shape:"circle",
-			//fullHealth:80,
+			fullHealth:80,
 			//width:50,
 			//height:50,
 			radius:30,
