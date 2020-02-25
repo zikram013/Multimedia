@@ -479,36 +479,55 @@ var levels = {
 		foreground:'PaprikaWasteland-foreground',
 		background:'clouds-background',
 		entities:[
+			
 			{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 
-			{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:520,y:280,angle:90,width:100,height:25},								
-			{type:"villain", name:"burger",x:520,y:205,calories:590},
+			/*vegeta*/ 
+			{type:"block", name:"wood", x:830,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"wood", x:900,y:380,angle:90,width:100,height:25},
+			{type:"block", name:"glass", x:865,y:317.5,width:100,height:25},
 
-			{type:"block", name:"wood", x:620,y:380,angle:90,width:100,height:25},
-			{type:"block", name:"glass", x:620,y:280,angle:90,width:100,height:25},								
-			{type:"villain", name:"fries", x:620,y:205,calories:420},				
-			/*
-			{type:"hero", name:"orange",x:80,y:405},
-			{type:"hero", name:"apple",x:140,y:405},
-			*/
-			{type:"hero",name:"SagaSaiyanGohan",x:80,y:405},
-			{type:"hero",name:"carapiccolo2",x:140,y:405},
-			{type:"hero",name:"krilinRecortadoCircular",x:200,y:405},
-			{type:"hero",name:"chaosCaraRecortada",x:260,y:405},
-			{type:"hero",name:"yamchacararecortada",x:320,y:405},
-			{type:"hero",name:"tenshinhancararecortada",x:380,y:405},
-			{type:"hero",name:"caragokurecortadacircular",x:460,y:405},
+			//pedestales saibaman
+			{type:"block", name:"glass", x:450,y:320,width:100,height:25,isStatic:true},
+			{type:"block", name:"glass", x:450,y:220,width:100,height:25,isStatic:true},
+			{type:"block", name:"glass", x:450,y:120,width:100,height:25,isStatic:true},
+
+			/*raditz*/
+			{type:"block", name:"glass", x:607,y:300,angle:45,width:100,height:25,isStatic:true},
+			{type:"block", name:"glass", x:695,y:300,angle:135,width:100,height:25,isStatic:true},
+			{type:"block", name:"wood", x:651.5,y:247,width:130,height:25},
+			/**nappa */
+			{type:"block", name:"glass", x:687,y:135,angle:45,width:100,height:25,isStatic:true},
+			{type:"block", name:"glass", x:775,y:135,angle:135,width:100,height:25,isStatic:true},
+			{type:"block", name:"wood", x:731.5,y:82,width:130,height:25},
+
+			//heroes
+			/*{type:"hero",name:"SagaSaiyanGohan",x:80,y:405},
+			{type:"hero",name:"carapiccolo2",x:70,y:405},
+			{type:"hero",name:"krilinRecortadoCircular",x:60,y:405},
+			{type:"hero",name:"chaosCaraRecortada",x:50,y:405},
+			{type:"hero",name:"yamchacararecortada",x:40,y:405},
+			{type:"hero",name:"tenshinhancararecortada",x:30,y:405},*/
+			{type:"hero",name:"caragokurecortadacircular",x:20,y:405},
+
+			//villain
+			{type:"villain", name:"Saibaman", x:450,y:277,calories:50},
+			{type:"villain", name:"Saibaman", x:450,y:177,calories:50},
+			{type:"villain", name:"Saibaman", x:450,y:77,calories:50,},
+			{type:"villain", name:"nappa", x:731.5,y:39,calories:500,isStatic:true},
+			{type:"villain", name:"Raditz", x:651.5,y:204,calories:250,isStatic:true},
+			{type:"villain", name:"vegetasagasaiyan", x:865,y:274.5,calories:1000,isStatic:true},
 		]
 	 },
 		{   // Segundo nivel
-			foreground:'planetaSagrado-foreground',
-			background:'clouds-background',
+			foreground:'namek-foreground',
+			background:'namek-background',
+			
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
-	
+				/*
 				{type:"block", name:"wood", x:820,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:720,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:620,y:380,angle:90,width:100,height:25},
@@ -522,11 +541,37 @@ var levels = {
 				{type:"villain", name:"burger",x:715,y:155,calories:590},
 				{type:"villain", name:"fries",x:670,y:405,calories:420},
 				{type:"villain", name:"sodacan",x:765,y:400,calories:150},
+				*/
+
+				/*primera estructura*/ 
+				{type:"block", name:"glass", x:457,y:385,angle:45,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:545,y:385,angle:135,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:501.5,y:332,width:130,height:25},
+				{type:"block", name:"glass", x:449,y:275,angle:90,width:90,height:25},
+				{type:"block", name:"glass", x:550,y:275,angle:90,width:90,height:25},
+				{type:"block", name:"glass", x:457,y:205,angle:45,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:545,y:205,angle:135,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:501.5,y:152,width:130,height:25},
+
+				/*segunda estructura*/ 
+				{type:"block", name:"glass", x:665,y:418,width:100,height:25},/**enemigo */
+				{type:"block", name:"wood", x:705,y:392,width:100,height:25},
+				{type:"block", name:"wood", x:745,y:366,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:785,y:340,width:100,height:25},/*enemigo*/
+				{type:"block", name:"wood", x:745,y:314,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:705,y:288,width:100,height:25},/**enemigo */
+				{type:"block", name:"wood", x:745,y:262,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:785,y:236,width:100,height:25},/**enemigo */
+
+				/*pedestal freezer*/ 
+				{type:"block", name:"wood", x:900,y:380,angle:90,width:100,height:25,isStatic:true},	
 
 				{type:"hero", name:"Gotenksrecortadocircular",x:80,y:415},
 				{type:"hero", name:"gohanadultorecortadacircular",x:140,y:405},
 				{type:"hero", name:"caraVegetaSuperSaiyanrecortadacircular",x:200,y:405},
 				{type:"hero",name:"caragokusaiyan1recortadacircular",x:260,y:405},
+
+				//{type:"villain", name:"sodacan",x:400,y:400,calories:150,isStatic:true},
 			]
 	},
 		{//Tercer nivel
@@ -540,26 +585,32 @@ var levels = {
 				{type:"block", name:"wood", x:470,y:417,width:100,height:25},
 				//primera parte diagonal y su apoyo
 				{type:"block", name:"wood", x:514,y:360,angle:135,width:100,height:25},
-				{type:"block", name:"wood", x:565,y:385,angle:90,width:88,height:25},
+				{type:"block", name:"glass", x:565,y:385,angle:90,width:88,height:25},
 				//segunda parte diagonal y su apoyo
 				{type:"block", name:"wood", x:427,y:360,angle:45,width:100,height:25},
-				{type:"block", name:"wood", x:375,y:385,angle:90,width:88,height:25},
+				{type:"block", name:"glass", x:375,y:385,angle:90,width:88,height:25},
 				//tercera parte casita cercana
 				{type:"block", name:"wood", x:650,y:385,angle:90,width:88,height:25},
 				{type:"block", name:"wood", x:612,y:330,width:100,height:25},
 				//cuarta parte casita alta
 				{type:"block", name:"wood", x:750,y:385,angle:90,width:88,height:25},
-				{type:"block", name:"wood", x:750,y:297,angle:90,width:88,height:25},
-				{type:"block", name:"wood", x:698,y:240,width:130,height:25},
-				{type:"block", name:"wood", x:650,y:285,angle:90,width:65,height:25},
+				{type:"block", name:"glass", x:750,y:297,angle:90,width:88,height:25},
+				{type:"block", name:"glass", x:698,y:240,width:130,height:25},
+				{type:"block", name:"glass", x:650,y:285,angle:90,width:65,height:25},
 				//tejado de la parte cuarta
 				{type:"block", name:"wood", x:675,y:175,angle:110,width:100,height:25},
 				{type:"block", name:"wood", x:730,y:175,angle:70,width:100,height:25},
 
+				//pedestal para celljr
+				{type:"block", name:"glass", x:475,y:300,width:100,height:25,isStatic:true},
+
+				//pedestal cell
+				{type:"block", name:"wood", x:870,y:300,width:100,height:25,isStatic:true},
+
 				//heroes
-				{type:"hero",name:"caragohanssj2recortecircular",x:240,y:405},
-				{type:"hero",name:"caragokusaiyan1recortadacircular",x:140,y:405},
-				{type:"hero",name:"caraVegetaSuperSaiyanrecortadacircular",x:200,y:405},
+				{type:"hero",name:"caragohanssj2recortecircular",x:35,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:50,y:405},
+				{type:"hero",name:"caraVegetaSuperSaiyanrecortadacircular",x:65,y:405},
 				{type:"hero",name:"trunksrecortadacircular",x:80,y:405},
 
 				//villanos
@@ -569,8 +620,8 @@ var levels = {
 	},
 		{
 			//Cuarto nivel
-			foreground:'namek-foreground',
-			background:'namek-background',
+			foreground:'planetaSagrado-foreground',
+			background:'clouds-background',
 			
 
 			entities:[
@@ -581,24 +632,24 @@ var levels = {
 				{type:"ki", name:"ki-morado", x:350,y:330,width:40,height:200,isStatic:true},
 
 				//Hace la casa del medio
-				{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:470,y:317.5,width:100,height:25},
-				{type:"block", name:"wood", x:420,y:380,angle:90,width:100,height:25},	
+				{type:"block", name:"glass", x:520,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:470,y:317.5,width:100,height:25},
+				{type:"block", name:"glass", x:420,y:380,angle:90,width:100,height:25},	
 				{type:"villain", name:"fries",x:480,y:405,calories:420,isStatic:true},
 
 				//conexion de la casa con el muro
 				{type:"block", name:"wood", x:470,y:253.5,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:520,y:190,width:100,height:25},
-				{type:"block", name:"wood", x:600,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:570,y:317.5,width:100,height:25},
+				{type:"block", name:"glass", x:600,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:570,y:317.5,width:100,height:25},
 				{type:"block", name:"wood", x:565,y:253.5,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:517.5,y:253.5,angle:90,width:100,height:25},
 				//{type:"block", name:"wood", x:485,y:160,width:100,height:25,isStatic:true},
 
 				//Hacemos la segunda parte
-				{type:"block", name:"wood", x:715,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:715,y:280,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:715,y:180,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:715,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:715,y:280,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:715,y:180,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:675,y:120,width:100,height:25,isStatic:true},
 				{type:"block", name:"wood", x:575,y:120,width:100,height:25,isStatic:true},
 
@@ -689,7 +740,7 @@ var entities = {
 			density:3.0,
 			friction:1.5,
 			restitution:0.2,	
-		},
+		},/*
 		"burger":{
 			shape:"circle",
 			fullHealth:40,
@@ -736,8 +787,49 @@ var entities = {
 			density:2.0,
 			friction:0.5,
 			restitution:0.4,	
-		},
+		},*/
 		/*Personajes de bola de dragon*/
+
+		"Raditz":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"nappa":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"vegetasagasaiyan":{
+			shape:"rectangle",
+			fullHealth:200,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"Saibaman":{
+			shape:"rectangle",
+			fullHealth:50,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,	
+		},
+
 		"Gotenksrecortadocircular":{
 			shape:"circle",
 			radius:30,

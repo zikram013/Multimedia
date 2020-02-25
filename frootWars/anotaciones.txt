@@ -13,3 +13,5 @@
 7.Actualizar musica a todos los niveles realizado
 
 8.Cambiar pantallas de inicio y seleccion de niveles - realizado
+
+9.Arreglar tema aliados
