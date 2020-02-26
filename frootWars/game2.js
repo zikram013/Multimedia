@@ -1,4 +1,4 @@
-// Declarar todos los objetos de uso comÃºn como variables por conveniencia
+
 var b2Vec2 = Box2D.Common.Math.b2Vec2;
 var b2BodyDef = Box2D.Dynamics.b2BodyDef;
 var b2Body = Box2D.Dynamics.b2Body;
@@ -9,7 +9,7 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
-// Solicitud de requestAnimationFrame y cancelAnimationFrame para su uso en el cÃ³digo del juego
+
 (function() {
 	var lastTime = 0;
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -40,18 +40,13 @@ $(window).load(function() {
 });
 
 var game = {
-	// InicializaciÃ³n de objetos, precarga de elementos y pantalla de inicio
+	
 	init: function(){
-		// InicializaciÃ³n de objetos   
+		 
 		levels.init();
 		loader.init();
 		mouse.init();
 
-		// Cargar todos los efectos de sonido y mÃºsica de fondo
-	
-		//"Kindergarten" by Gurdonark
-		//http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
-		//game.backgroundMusic = loader.loadSound('gurdonark-kindergarten');
 
 		game.backgroundMusicSaiyan=loader.loadSound('dragonballzbudokaitenkaichi');
 		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
@@ -60,7 +55,7 @@ var game = {
 
 		game.slingshotReleasedSound = loader.loadSound("released");
 		game.bounceSound = loader.loadSound('bounce');
-		//sonido colision
+	
 		game.kiSound=loader.loadSound('dbz-ki');
 
 
@@ -71,11 +66,11 @@ var game = {
 		};
 
 
-		// Ocultar todas las capas del juego y mostrar la pantalla de inicio
+		
 		$('.gamelayer').hide();
 		$('#gamestartscreen').show();
 
-		//Obtener el controlador para el lienzo de juego y el contexto
+		
 		game.canvas = document.getElementById('gamecanvas');
 		game.context = game.canvas.getContext('2d');
 	},	  
@@ -170,10 +165,41 @@ var game = {
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
-		//$('#gamecontainer').css('background', 'gokuandvegeta.png').show;
-		/*var imagen = document.getElementById("gamecontainer");
-		gamecontainer.style.background = "gokuandvegeta.png";*/
+
 	},
+
+	//volver a pantalla inicio
+	mainScreen:function(){
+		$('.gamelayer').hide();
+		$('#gamestartscreen').show();
+	},
+
+	//pantalla de settings
+	showSettingsScreen:function(){
+		$('.gamelayer').hide();
+		$('#settingsscreen').show('slow');
+	},
+
+	launchFullScreen:function(element){
+		if(element.requestFullScreen) {
+			element.requestFullScreen();
+		  } else if(element.mozRequestFullScreen) {
+			element.mozRequestFullScreen();
+		  } else if(element.webkitRequestFullScreen) {
+			element.webkitRequestFullScreen();
+		  }
+	},
+
+	exitFullScreen:function(element){
+		if(document.cancelFullScreen) {
+			document.cancelFullScreen();
+		} else if(document.mozCancelFullScreen) {
+			document.mozCancelFullScreen();
+		} else if(document.webkitCancelFullScreen) {
+			document.webkitCancelFullScreen();
+		}
+	},
+
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
 		game.lastUpdateTime = undefined;
@@ -184,14 +210,14 @@ var game = {
 		game.lastUpdateTime = undefined;
 		levels.load(game.currentLevel.number+1);
 	},
-	// Modo Juego 
+	
 	mode:"intro", 
-	// Coordenadas X & Y de la honda
+
 	slingshotX:140,
 	slingshotY:280,
 	start:function(){
 		$('.gamelayer').hide();
-		// Display the game canvas and score 
+		
 		$('#gamecanvas').show();
 		$('#scorescreen').show();
 	
@@ -205,17 +231,16 @@ var game = {
 
 	
 
-	// Velocidad mÃ¡xima de panoramizaciÃ³n por fotograma en pÃ­xeles
 	maxSpeed:3,
-	// MÃ­nimo y MÃ¡ximo desplazamiento panorÃ¡mico
+
 	minOffset:0,
 	maxOffset:300,
-	// Desplazamiento de panorÃ¡mica actual
+
 	offsetLeft:0,
-	// La puntuaciÃ³n del juego
+
 	score:0,
 
-	//Despliegue la pantalla para centrarse en newCenter
+	
 	panTo:function(newCenter){
 		if (Math.abs(newCenter-game.offsetLeft-game.canvas.width/4)>0 
 			&& game.offsetLeft <= game.maxOffset && game.offsetLeft >= game.minOffset){
@@ -282,14 +307,22 @@ var game = {
 
 		if (game.mode == "firing"){  
 			if(mouse.down){
-				game.panTo(game.slingshotX);				
-				game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
+				game.panTo(game.slingshotX);
+				var distance = Math.sqrt(Math.pow(mouse.x-mouse.downX,2) + Math.pow(mouse.y-mouse.downY,2));
+				var maxDistance = 130;
+				if (maxDistance > distance){
+					game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
+				} else {
+					var angle = Math.atan2(mouse.y-mouse.downY,mouse.x-mouse.downX);
+					game.currentHero.SetPosition({x:(mouse.downX + maxDistance * Math.cos(angle)+game.offsetLeft)/box2d.scale,y:(mouse.downY + maxDistance * Math.sin(angle))/box2d.scale});
+				}				
+				//game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
 			} else {
 				game.mode = "fired";
 				game.slingshotReleasedSound.play();								
 				var impulseScaleFactor = 0.75;
 				
-				// Coordenadas del centro de la honda (donde la banda estÃ¡ atada a la honda)
+				
 				var slingshotCenterX = game.slingshotX + 35;
 				var slingshotCenterY = game.slingshotY+25;
 				var impulse = new b2Vec2((slingshotCenterX -mouse.x-game.offsetLeft)*impulseScaleFactor,(slingshotCenterY-mouse.y)*impulseScaleFactor);
@@ -299,16 +332,16 @@ var game = {
 		}
 
 		if (game.mode == "fired"){		
-			//Vista panorÃ¡mica donde el hÃ©roe se encuentra actualmente...
+		
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
 
-			//Y esperar hasta que deja de moverse o estÃ¡ fuera de los lÃ­mites
+		
 			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
-				// Luego borra el viejo hÃ©roe
+			
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
-				// y carga el siguiente hÃ©roe
+			
 				game.mode = "load-next-hero";
 			}
 		}
@@ -317,19 +350,19 @@ var game = {
 		if (game.mode == "load-next-hero"){
 			game.countHeroesAndVillains();
 
-			// Comprobar si algÃºn villano estÃ¡ vivo, si no, termine el nivel (Ã©xito)
+		
 			if (game.villains.length == 0){
 				game.mode = "level-success";
 				return;
 			}
 
-			// Comprobar si hay mÃ¡s hÃ©roes para cargar, si no terminar el nivel (fallo)
+			
 			if (game.heroes.length == 0){
 				game.mode = "level-failure"	
 				return;		
 			}
 
-			// Cargar el hÃ©roe y establecer el modo de espera para disparar (wait-for-firing)
+			
 			if(!game.currentHero){
 				game.currentHero = game.heroes[game.heroes.length-1];
 				game.currentHero.SetPosition({x:180/box2d.scale,y:200/box2d.scale});
@@ -337,7 +370,7 @@ var game = {
 	 			game.currentHero.SetAngularVelocity(0);
 				game.currentHero.SetAwake(true);				
 			} else {
-				// Esperar a que el hÃ©roe deje de rebotar y se duerma y luego cambie a espera para disparar (wait-for-firing)
+		
 				game.panTo(game.slingshotX);
 				if(!game.currentHero.IsAwake()){
 					game.mode = "wait-for-firing";
@@ -373,10 +406,10 @@ var game = {
 		},
 	
 	animate:function(){
-		// Animar el fondo
+		
 		game.handlePanning();
 
-		// Animar los personajes
+	
 			var currentTime = new Date().getTime();
 			var timeStep;
 			if (game.lastUpdateTime){
@@ -389,22 +422,21 @@ var game = {
 			game.lastUpdateTime = currentTime;
 	
 
-		// Dibujar el fondo con desplazamiento de paralaje
+	
 		game.context.drawImage(game.currentLevel.backgroundImage,game.offsetLeft/4,0,640,480,0,0,640,480);
 		game.context.drawImage(game.currentLevel.foregroundImage,game.offsetLeft,0,640,480,0,0,640,480);
 
-		// Dibujar la honda
+	
 		game.context.drawImage(game.slingshotImage,game.slingshotX-game.offsetLeft,game.slingshotY);
 
-		// Dibujar todos los cuerpos
 		game.drawAllBodies();
 	
-		// Dibujar la banda cuando estamos disparando un hÃ©roe
+		
 		if(game.mode == "wait-for-firing" || game.mode == "firing"){  
 			game.drawSlingshotBand();
 		}
 
-		// Dibujar el frente de la honda
+	
 		game.context.drawImage(game.slingshotFrontImage,game.slingshotX-game.offsetLeft,game.slingshotY);
 
 		if (!game.ended){
@@ -414,7 +446,7 @@ var game = {
 	drawAllBodies:function(){  
 		box2d.world.DrawDebugData();	
 
-		// Iterar a travÃ©s de todos los cuerpos y dibujarlos en el lienzo del juego		  
+				  
 		for (var body = box2d.world.GetBodyList(); body; body = body.GetNext()) {
 			var entity = body.GetUserData();
   
@@ -439,7 +471,7 @@ var game = {
 		game.context.strokeStyle = "rgb(68,31,11)"; // Color marrÃ³n oscuro
 		game.context.lineWidth = 6; // Dibuja una lÃ­nea gruesa
 
-		// Utilizar el Ã¡ngulo y el radio del hÃ©roe para calcular el centro del hÃ©roe
+		
 		var radius = game.currentHero.GetUserData().radius;
 		var heroX = game.currentHero.GetPosition().x*box2d.scale;
 		var heroY = game.currentHero.GetPosition().y*box2d.scale;			
@@ -451,21 +483,21 @@ var game = {
 	
 	
 		game.context.beginPath();
-		// Iniciar la lÃ­nea desde la parte superior de la honda (la parte trasera)
+	
 		game.context.moveTo(game.slingshotX+50-game.offsetLeft, game.slingshotY+25);	
 
-		// Dibuja lÃ­nea al centro del hÃ©roe
+	
 		game.context.lineTo(heroX-game.offsetLeft,heroY);
 		game.context.stroke();		
 	
-		// Dibuja el hÃ©roe en la banda posterior
+		
 		entities.draw(game.currentHero.GetUserData(),game.currentHero.GetPosition(),game.currentHero.GetAngle());
 			
 		game.context.beginPath();		
-		// Mover al borde del hÃ©roe mÃ¡s alejado de la parte superior de la honda
+	
 		game.context.moveTo(heroFarEdgeX-game.offsetLeft,heroFarEdgeY);
 	
-		// Dibujar lÃ­nea de regreso a la parte superior de la honda (el lado frontal)
+		
 		game.context.lineTo(game.slingshotX-game.offsetLeft +10,game.slingshotY+30)
 		game.context.stroke();
 	},
@@ -473,7 +505,7 @@ var game = {
 }
 
 var levels = {
-	// Datos de nivel
+
 	data:[
 	 {   // Primer nivel 
 		foreground:'PaprikaWasteland-foreground',
@@ -503,21 +535,21 @@ var levels = {
 			{type:"block", name:"wood", x:731.5,y:82,width:130,height:25},
 
 			//heroes
-			/*{type:"hero",name:"SagaSaiyanGohan",x:80,y:405},
-			{type:"hero",name:"carapiccolo2",x:70,y:405},
-			{type:"hero",name:"krilinRecortadoCircular",x:60,y:405},
-			{type:"hero",name:"chaosCaraRecortada",x:50,y:405},
-			{type:"hero",name:"yamchacararecortada",x:40,y:405},
-			{type:"hero",name:"tenshinhancararecortada",x:30,y:405},*/
-			{type:"hero",name:"caragokurecortadacircular",x:20,y:405},
+			{type:"hero",name:"SagaSaiyanGohan",x:150,y:405},
+			{type:"hero",name:"carapiccolo2",x:120,y:405},
+			{type:"hero",name:"krilinRecortadoCircular",x:90,y:405},
+			//{type:"hero",name:"chaosCaraRecortada",x:60,y:405},
+			{type:"hero",name:"yamchacararecortada",x:0,y:405},
+			{type:"hero",name:"tenshinhancararecortada",x:60,y:405},
+			{type:"hero",name:"caragokurecortadacircular",x:30,y:405},
 
 			//villain
 			{type:"villain", name:"Saibaman", x:450,y:277,calories:50},
 			{type:"villain", name:"Saibaman", x:450,y:177,calories:50},
 			{type:"villain", name:"Saibaman", x:450,y:77,calories:50,},
-			{type:"villain", name:"nappa", x:731.5,y:39,calories:500,isStatic:true},
-			{type:"villain", name:"Raditz", x:651.5,y:204,calories:250,isStatic:true},
-			{type:"villain", name:"vegetasagasaiyan", x:865,y:274.5,calories:1000,isStatic:true},
+			{type:"villain", name:"nappa", x:731.5,y:39,calories:500},
+			{type:"villain", name:"Raditz", x:651.5,y:204,calories:250},
+			{type:"villain", name:"vegetasagasaiyan", x:865,y:274.5,calories:1000},
 		]
 	 },
 		{   // Segundo nivel
@@ -527,21 +559,6 @@ var levels = {
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
-				/*
-				{type:"block", name:"wood", x:820,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:720,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:620,y:380,angle:90,width:100,height:25},
-				{type:"block", name:"glass", x:670,y:317.5,width:100,height:25},
-				{type:"block", name:"glass", x:770,y:317.5,width:100,height:25},				
-
-				{type:"block", name:"glass", x:670,y:255,angle:90,width:100,height:25},
-				{type:"block", name:"glass", x:770,y:255,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:720,y:192.5,width:100,height:25},	
-
-				{type:"villain", name:"burger",x:715,y:155,calories:590},
-				{type:"villain", name:"fries",x:670,y:405,calories:420},
-				{type:"villain", name:"sodacan",x:765,y:400,calories:150},
-				*/
 
 				/*primera estructura*/ 
 				{type:"block", name:"glass", x:457,y:385,angle:45,width:100,height:25,isStatic:true},
@@ -554,24 +571,31 @@ var levels = {
 				{type:"block", name:"wood", x:501.5,y:152,width:130,height:25},
 
 				/*segunda estructura*/ 
-				{type:"block", name:"glass", x:665,y:418,width:100,height:25},/**enemigo */
-				{type:"block", name:"wood", x:705,y:392,width:100,height:25},
+				{type:"block", name:"glass", x:665,y:418,width:100,height:25,isStatic:true},
+				{type:"block", name:"wood", x:705,y:392,width:100,height:25,isStatic:true},
 				{type:"block", name:"wood", x:745,y:366,width:100,height:25,isStatic:true},
-				{type:"block", name:"glass", x:785,y:340,width:100,height:25},/*enemigo*/
+				{type:"block", name:"glass", x:785,y:340,width:100,height:25},
 				{type:"block", name:"wood", x:745,y:314,width:100,height:25,isStatic:true},
-				{type:"block", name:"glass", x:705,y:288,width:100,height:25},/**enemigo */
+				{type:"block", name:"glass", x:705,y:288,width:100,height:25},
 				{type:"block", name:"wood", x:745,y:262,width:100,height:25,isStatic:true},
-				{type:"block", name:"glass", x:785,y:236,width:100,height:25},/**enemigo */
+				{type:"block", name:"glass", x:785,y:233.5,width:100,height:25},
 
 				/*pedestal freezer*/ 
 				{type:"block", name:"wood", x:900,y:380,angle:90,width:100,height:25,isStatic:true},	
 
-				{type:"hero", name:"Gotenksrecortadocircular",x:80,y:415},
-				{type:"hero", name:"gohanadultorecortadacircular",x:140,y:405},
-				{type:"hero", name:"caraVegetaSuperSaiyanrecortadacircular",x:200,y:405},
-				{type:"hero",name:"caragokusaiyan1recortadacircular",x:260,y:405},
 
-				//{type:"villain", name:"sodacan",x:400,y:400,calories:150,isStatic:true},
+
+				{type:"hero",name:"krilinRecortadoCircular",x:130,y:405},
+				{type:"hero",name:"SagaSaiyanGohan",x:100,y:405},
+				{type:"hero",name:"caravegetarecortadacircular",x:70,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:40,y:405},
+
+				{type:"villain", name:"freezerKi", x:900,y:300,calories:1000},
+				{type:"villain", name:"Ginyu", x:780,y:195,calories:1000},
+				{type:"villain", name:"dodoria", x:501.5,y:290,calories:1000},
+				{type:"villain", name:"burter", x:501.5,y:109.5,calories:1000},
+				{type:"villain",name:"jeice", x:675,y:350,calories:1000},
+
 			]
 	},
 		{//Tercer nivel
@@ -598,8 +622,8 @@ var levels = {
 				{type:"block", name:"glass", x:698,y:240,width:130,height:25},
 				{type:"block", name:"glass", x:650,y:285,angle:90,width:65,height:25},
 				//tejado de la parte cuarta
-				{type:"block", name:"wood", x:675,y:175,angle:110,width:100,height:25},
-				{type:"block", name:"wood", x:730,y:175,angle:70,width:100,height:25},
+				{type:"block", name:"glass", x:675,y:175,angle:110,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:730,y:175,angle:70,width:100,height:25,isStatic:true},
 
 				//pedestal para celljr
 				{type:"block", name:"glass", x:475,y:300,width:100,height:25,isStatic:true},
@@ -608,13 +632,17 @@ var levels = {
 				{type:"block", name:"wood", x:870,y:300,width:100,height:25,isStatic:true},
 
 				//heroes
-				{type:"hero",name:"caragohanssj2recortecircular",x:35,y:405},
-				{type:"hero",name:"caragokusaiyan1recortadacircular",x:50,y:405},
-				{type:"hero",name:"caraVegetaSuperSaiyanrecortadacircular",x:65,y:405},
-				{type:"hero",name:"trunksrecortadacircular",x:80,y:405},
+				{type:"hero",name:"caragohanssj2recortecircular",x:130,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:100,y:405},
+				{type:"hero",name:"caraVegetaSuperSaiyanrecortadacircular",x:70,y:405},
+				{type:"hero",name:"trunksrecortadacircular",x:40,y:405},
 
 				//villanos
-				{type:"villain", name:"cell",x:900,y:150,calories:590,isStatic:true},
+				{type:"villain", name:"android17",x:703.05,y:96,calories:590},
+				{type:"villain", name:"android18",x:702.5,y:400,calories:590},
+				{type:"villain", name:"CellJR",x:475,y:257,calories:590},
+				{type:"villain", name:"CellJR",x:605,y:285,calories:590},
+				{type:"villain", name:"perfectCell",x:870,y:257,calories:590},
 			]
 			
 	},
@@ -629,13 +657,12 @@ var levels = {
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 
 				//Barrera de ki
-				{type:"ki", name:"ki-morado", x:350,y:330,width:40,height:200,isStatic:true},
+				{type:"ki", name:"ki-morado", x:350,y:315,width:40,height:100,isStatic:true},
 
 				//Hace la casa del medio
 				{type:"block", name:"glass", x:520,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"glass", x:470,y:317.5,width:100,height:25},
 				{type:"block", name:"glass", x:420,y:380,angle:90,width:100,height:25},	
-				{type:"villain", name:"fries",x:480,y:405,calories:420,isStatic:true},
 
 				//conexion de la casa con el muro
 				{type:"block", name:"wood", x:470,y:253.5,angle:90,width:100,height:25},
@@ -649,22 +676,26 @@ var levels = {
 				//Hacemos la segunda parte
 				{type:"block", name:"glass", x:715,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"glass", x:715,y:280,angle:90,width:100,height:25},
-				{type:"block", name:"glass", x:715,y:180,angle:90,width:100,height:25},
-				{type:"block", name:"wood", x:675,y:120,width:100,height:25,isStatic:true},
-				{type:"block", name:"wood", x:575,y:120,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:715,y:180,angle:90,width:85,height:25},
+				{type:"block", name:"glass", x:677,y:135,width:100,height:25,isStatic:true},
+				{type:"block", name:"glass", x:577,y:135,width:100,height:25,isStatic:true},
 
-				{type:"hero",name:"krilinRecortadoCircular",x:80,y:405},
-				{type:"hero",name:"SagaSaiyanGohan",x:140,y:405},
-				{type:"hero",name:"caravegetarecortadacircular",x:200,y:405},
-				{type:"hero",name:"caragokusaiyan1recortadacircular",x:260,y:405},
+				{type:"hero", name:"Gotenksrecortadocircular",x:130,y:415},
+				{type:"hero", name:"gohanadultorecortadacircular",x:100,y:405},
+				{type:"hero", name:"caraVegetaSuperSaiyanrecortadacircular",x:70,y:405},
+				{type:"hero",name:"caragokusaiyan1recortadacircular",x:40,y:405},
 
 				
-				{type:"villain", name:"freezer",x:670,y:405,calories:1000},
+				{type:"villain", name:"kidbuu",x:775,y:405,calories:1000},
+				{type:"villain", name:"majinbuu",x:500,y:148,calories:1000},
+				{type:"villain", name:"superbuu",x:625,y:93,calories:1000},
+				{type:"villain", name:"babidi",x:480,y:400,calories:1000},
+				{type:"villain", name:"dabra",x:560,y:400,calories:1000},
 			]
 		}
 	],
 
-	// Inicializar pantalla de selecciÃ³n de nivel
+
 	init:function(){
 		var html = "";
 		for (var i=0; i < levels.data.length; i++) {
@@ -673,19 +704,19 @@ var levels = {
 		};
 		$('#levelselectscreen').html(html);
 		
-		// Establecer los controladores de eventos de clic de botÃ³n para cargar el nivel
+	
 		$('#levelselectscreen input').click(function(){
 			levels.load(this.value-1);
 			$('#levelselectscreen').hide();
 		});
 	},
 
-	   // Cargar todos los datos e imÃ¡genes para un nivel especÃ­fico
+
 	load:function(number){
-	   //Inicializar box2d world cada vez que se carga un nivel
+
 		box2d.init();
 
-		// Declarar un nuevo objeto de nivel actual
+	
 		game.currentLevel = {number:number,hero:[]};
 		game.score=0;
 		$('#score').html('Score: '+game.score);
@@ -693,22 +724,21 @@ var levels = {
 		var level = levels.data[number];
 
 
-		//Cargar las imÃ¡genes de fondo, primer plano y honda
+	
 		game.currentLevel.backgroundImage = loader.loadImage(level.background+".png");
 		game.currentLevel.foregroundImage = loader.loadImage(level.foreground+".png");
 		
-		//game.currentLevel.Sound=loader.loadSound(level.sound+".ogg");
+	
 
 		game.slingshotImage = loader.loadImage("slingshot.png");
 		game.slingshotFrontImage = loader.loadImage("slingshot-front.png");
 
-		// Cargar todas la entidades
+	
 		for (var i = level.entities.length - 1; i >= 0; i--){	
 			var entity = level.entities[i];
 			entities.create(entity);			
 		};
 
-		  //Llamar a game.start() una vez que los assets se hayan cargado
 	   if(loader.loaded){
 		   game.start()
 	   } else {
@@ -789,6 +819,145 @@ var entities = {
 			restitution:0.4,	
 		},*/
 		/*Personajes de bola de dragon*/
+		"babidi":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"dabra":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"superbuu":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"majinbuu":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"kidbuu":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"android18":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"android17":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"CellJR":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"perfectCell":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"dodoria":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"jeice":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"burter":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"Ginyu":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
+
+		"freezerKi":{
+			shape:"rectangle",
+			fullHealth:120,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+		},
 
 		"Raditz":{
 			shape:"rectangle",
@@ -832,7 +1001,7 @@ var entities = {
 
 		"Gotenksrecortadocircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -840,7 +1009,7 @@ var entities = {
 		
 		"gohanadultorecortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -848,7 +1017,7 @@ var entities = {
 
 		"trunksrecortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,	
@@ -856,7 +1025,7 @@ var entities = {
 
 		"caraVegetaSuperSaiyanrecortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -864,7 +1033,7 @@ var entities = {
 
 		"caragohanssj2recortecircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -872,7 +1041,7 @@ var entities = {
 
 		"caragokusaiyan1recortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -880,7 +1049,7 @@ var entities = {
 
 		"caravegetarecortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -888,23 +1057,15 @@ var entities = {
 
 		"caragokurecortadacircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
 		},
 
-		"freezer":{//ponerle vida y tratarle de villano
-			shape:"circle",
-			fullHealth:100,
-			radius:30,
-			density:2,
-			friction:0.5,
-			restitution:0.4,
-		},
 		"carapiccolo2":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -912,7 +1073,7 @@ var entities = {
 
 		"krilinRecortadoCircular":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -920,7 +1081,7 @@ var entities = {
 
 		"SagaSaiyanGohan":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -928,7 +1089,7 @@ var entities = {
 
 		"chaosCaraRecortada":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
@@ -936,32 +1097,21 @@ var entities = {
 
 		"yamchacararecortada":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
 		},
 		"tenshinhancararecortada":{
 			shape:"circle",
-			radius:30,
+			radius:15,
 			density:2,
 			friction:0.5,
 			restitution:0.4,
 		},
-
-		"cell":{//ponerle la vida y tratarle de villano
-			shape:"circle",
-			fullHealth:80,
-			//width:50,
-			//height:50,
-			radius:30,
-			density:1,
-			friction:0.5,
-			restitution:0.6,	
-		}
 		
 	},
-	// Tomar la entidad, crear un cuerpo box2d y aÃ±adirlo al mundo
+	
 	create:function(entity){
 		var definition = entities.definitions[entity.name];	
 		if(!definition){
@@ -977,7 +1127,7 @@ var entities = {
 				box2d.createRectangle(entity,definition);				
 				break;
 
-			case "block": // RectÃ¡ngulos simples
+			case "block": 
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
 				entity.shape = "rectangle";	
@@ -985,14 +1135,12 @@ var entities = {
 				entity.breakSound = game.breakSound[entity.name];
 				box2d.createRectangle(entity,definition);				
 				break;
-			case "ground": // RectÃ¡ngulos simples
-				// No hay necesidad de salud. Estos son indestructibles
+			case "ground": 
 				entity.shape = "rectangle";  
-				// No hay necesidad de sprites. Ã‰stos no serÃ¡n dibujados en absoluto 
 				box2d.createRectangle(entity,definition);			   
 				break;	
-			case "hero":	// CÃ­rculos simples
-			case "villain": // Pueden ser cÃ­rculos o rectÃ¡ngulos
+			case "hero":	
+			case "villain": 
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
 				entity.sprite = loader.loadImage(entity.name+".png");
@@ -1013,7 +1161,7 @@ var entities = {
 		}		
 	},
 
-	// Tomar la entidad, su posiciÃ³n y Ã¡ngulo y dibujar en el lienzo de juego
+
 	draw:function(entity,position,angle){
 		game.context.translate(position.x*box2d.scale-game.offsetLeft,position.y*box2d.scale);
 		game.context.rotate(angle);
@@ -1039,7 +1187,7 @@ var entities = {
 				}
 				break;				
 			case "ground":
-				// No hacer nada ... Vamos a dibujar objetos como el suelo y la honda por separado
+			
 				break;
 		}
 
@@ -1052,9 +1200,9 @@ var entities = {
 var box2d = {
 	scale:30,
 	init:function(){
-		// Configurar el mundo de box2d que harÃ¡ la mayorÃ­a de los cÃ¡lculos de la fÃ­sica
-		var gravity = new b2Vec2(0,9.8); //Declara la gravedad como 9,8 m / s ^ 2 hacia abajo
-		var allowSleep = true; //Permita que los objetos que estÃ¡n en reposo se queden dormidos y se excluyan de los cÃ¡lculos
+		
+		var gravity = new b2Vec2(0,9.8); 
+		var allowSleep = true; 
 		box2d.world = new b2World(gravity,allowSleep);
 
 		// Configurar depuraciÃ³n de dibujo
@@ -1077,10 +1225,9 @@ var box2d = {
 			var entity3 = body3.GetUserData();
 
 			var impulseAlongNormal = Math.abs(impulse.normalImpulses[0]);
-			// Este listener es llamado con mucha frecuencia. Filtra los impulsos muy prqueÃ±os.
-			// DespuÃ©s de probar diferentes valores, 5 parece funcionar bien
+			
 			if(impulseAlongNormal>5){
-				// Si los objetos tienen una salud, reduzca la salud por el valor del impulso			
+					
 				if (entity1.health){
 					entity1.health -= impulseAlongNormal;
 				}	
@@ -1089,7 +1236,7 @@ var box2d = {
 					entity2.health -= impulseAlongNormal;
 				}	
 		
-				// Si los objetos tienen un sonido de rebote, reproducirlos				
+							
 				if (entity1.bounceSound){
 					entity1.bounceSound.play();
 				}
@@ -1106,8 +1253,7 @@ var box2d = {
 		box2d.world.SetContactListener(listener);
 	},  
 	step:function(timeStep){
-		// velocidad de las iteraciones = 8
-		// posiciÃ³n de las iteraciones = 3
+
 		box2d.world.Step(timeStep,8,3);
 	},
 	createRectangle:function(entity,definition){
@@ -1171,24 +1317,24 @@ var box2d = {
 
 var loader = {
 	loaded:true,
-	loadedCount:0, // Los assets que se han cargado hasta ahora
-	totalCount:0, // NÃºmero total de assets que deben cargarse
+	loadedCount:0, 
+	totalCount:0, 
 	
 	init:function(){
-		// Comprobar si hay soporte de sonido
+		
 		var mp3Support,oggSupport;
 		var audio = document.createElement('audio');
 		if (audio.canPlayType) {
-	   		// Actualmente canPlayType() devuelve: "", "maybe" o "probably" 
+	   		
 	  		mp3Support = "" != audio.canPlayType('audio/mpeg');
 	  		oggSupport = "" != audio.canPlayType('audio/ogg; codecs="vorbis"');
 		} else {
-			// La etiqueta de audio no es soportada
+			
 			mp3Support = false;
 			oggSupport = false;	
 		}
 
-		// Comprobar para ogg, despuÃ©s mp3, y finalmente fijar soundFileExtn a indefinido
+		
 		loader.soundFileExtn = oggSupport?".ogg":mp3Support?".mp3":undefined;		
 	},
 	
@@ -1215,11 +1361,11 @@ var loader = {
 		loader.loadedCount++;
 		$('#loadingmessage').html('Loaded '+loader.loadedCount+' of '+loader.totalCount);
 		if (loader.loadedCount === loader.totalCount){
-			// Loader se ha cargado completamente. . .
+			
 			loader.loaded = true;
-			// Ocultar la pantalla de carga
+			
 			$('#loadingscreen').hide();
-			//Y llamar al mÃ©todo loader.onload si existe
+			
 			if(loader.onload){
 				loader.onload();
 				loader.onload = undefined;

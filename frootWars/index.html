@@ -4,6 +4,7 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>Froot Wars</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+        <script src="settings.js" type="text/javascript" charset="utf-8"></script>
         <script src="Box2dWeb-2.1.a.3.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="game2.js" type="text/javascript" charset="utf-8"></script>
@@ -21,11 +22,19 @@
             
             <div id="gamestartscreen" class="gamelayer">
                 <img src="play.png" alt="Play Game" onclick="game.showLevelScreen();"></br>
-                <img src="settings.png" alt="Settings">
+                <img src="settings.png" alt="Settings" onclick="game.showSettingsScreen();">
+            </div>
+
+            <div id="levelselectscreen" class="gamelayer2">               
+              <img src="prev.png"alt="Pantalla principal" onclick="game.mainScreen();">    
             </div>
             
-            <div id="levelselectscreen" class="gamelayer">
-                
+
+            <div id="settingsscreen" class="gamelayer">
+                <img src="prev.png " onclick="game.mainScreen();">
+                <p id="textoBotonPantalla"><strong>PONER/QUITAR PANTALLA COMPLETA</strong></p>
+                <img id="botonesPantalla" alt="Pantalla Completa" src="fullScreen.png" onclick="game.launchFullScreen(document.documentElement);">
+                <img id="botonesPantalla" alt="Quitar Pantalla Completa" src="normalScreen.png" onclick="game.exitFullScreen(document.documentElement);">
             </div>
 
             <div id="loadingscreen" class="gamelayer">
