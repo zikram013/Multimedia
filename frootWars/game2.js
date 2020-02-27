@@ -734,6 +734,8 @@ var levels = {
 		game.currentHero = undefined;
 		var level = levels.data[number];
 
+		
+
 
 	
 		game.currentLevel.backgroundImage = loader.loadImage(level.background+".png");
