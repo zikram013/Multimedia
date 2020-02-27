@@ -49,7 +49,7 @@ var game = {
 		loader.init();
 		mouse.init();
 		
-		//game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
+		game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
 		
 		game.backgroundMusicSaiyan=loader.loadSound('dragonballzbudokaitenkaichi');
 		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
