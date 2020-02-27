@@ -37,6 +37,8 @@ var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
 $(window).load(function() {
 	game.init();
+	//game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
+
 });
 
 var game = {
@@ -46,8 +48,9 @@ var game = {
 		levels.init();
 		loader.init();
 		mouse.init();
-
-
+		
+		//game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
+		
 		game.backgroundMusicSaiyan=loader.loadSound('dragonballzbudokaitenkaichi');
 		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
 		game.backgroundMusicCell=loader.loadSound('dbgt');
@@ -90,7 +93,11 @@ var game = {
 		}else if(game.currentLevel.number==0){
 			game.backgroundMusicSaiyan.play();
 			toggleImage.src="sound.png";
-		}/*else{
+		}
+		
+		
+		
+		/*else{
 			game.backgroundMusic.play();
 			toggleImage.src="sound.png";
 		}*/
@@ -179,6 +186,10 @@ var game = {
 		$('.gamelayer').hide();
 		$('#settingsscreen').show('slow');
 	},
+
+	/*muteGame:function(element){
+		document.querySelectorAll("audio").forEach(elem=>muteMe(elem));
+	},*/
 
 	launchFullScreen:function(element){
 		if(element.requestFullScreen) {

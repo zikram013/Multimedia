@@ -11,7 +11,9 @@
         <link rel="stylesheet" href="styles.css" type="text/css" media="screen" charset="utf-8">
     </head>
     <body onload="init();">
+       
         <div id="gamecontainer">
+
             <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
             
             <div id="scorescreen" class="gamelayer">
@@ -21,12 +23,18 @@
             </div>
             
             <div id="gamestartscreen" class="gamelayer">
+                
+                <audio class="audio">
+                    <source src="chalaInstrumental.ogg" type="audio/ogg">
+                </audio>
+
+
                 <img src="play.png" alt="Play Game" onclick="game.showLevelScreen();"></br>
                 <img src="settings.png" alt="Settings" onclick="game.showSettingsScreen();">
             </div>
 
             <div id="levelselectscreen" class="gamelayer2">               
-              <img src="prev.png"alt="Pantalla principal" onclick="game.mainScreen();">    
+            <!--<img src="prev.png"alt="Pantalla principal" onclick="game.mainScreen();">-->    
             </div>
             
 
@@ -35,6 +43,7 @@
                 <p id="textoBotonPantalla"><strong>PONER/QUITAR PANTALLA COMPLETA</strong></p>
                 <img id="botonesPantalla" alt="Pantalla Completa" src="fullScreen.png" onclick="game.launchFullScreen(document.documentElement);">
                 <img id="botonesPantalla" alt="Quitar Pantalla Completa" src="normalScreen.png" onclick="game.exitFullScreen(document.documentElement);">
+                
             </div>
 
             <div id="loadingscreen" class="gamelayer">
