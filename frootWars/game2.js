@@ -9,6 +9,8 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
+var temporizador;
+
 
 (function() {
 	var lastTime = 0;
@@ -339,6 +341,11 @@ var game = {
 				var impulse = new b2Vec2((slingshotCenterX -mouse.x-game.offsetLeft)*impulseScaleFactor,(slingshotCenterY-mouse.y)*impulseScaleFactor);
 				game.currentHero.ApplyImpulse(impulse,game.currentHero.GetWorldCenter());
 
+				game.currentHero.SetAngularDamping(0.5);
+				game.currentHero.SetLinearDamping(0.1);
+
+
+
 			}
 		}
 
@@ -347,14 +354,38 @@ var game = {
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
 
-		
-			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
+			if(heroX>100){
+				setTimeout(function(){
+					if(heroX>100 || !game.currentHero.IsAwake()){
+						box2d.world.DestroyBody(game.currentHero);
+						game.currentHero = undefined;
+						console.log("siguiente personaje");
+						
+					}
+					
+				 },5000);
+				 game.mode="load-next-hero";
+			}
+
+			if(!game.currentHero.IsAwake() || heroX<100 || heroX >game.currentLevel.foregroundImage.width){
 			
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
 			
 				game.mode = "load-next-hero";
+				
+
 			}
+
+			/*if(!game.currentHero.IsAwake() && heroX>=100){
+				setTimeout(function(){
+					box2d.world.DestroyBody(game.currentHero);
+					game.currentHero = undefined;
+					console.log("siguiente personaje");
+					 game.mode="load-next-hero";
+				 },10000);
+			}*/
+
 		}
 		
 
