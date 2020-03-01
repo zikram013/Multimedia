@@ -9,7 +9,6 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
-var temporizador;
 
 
 (function() {
@@ -388,15 +387,6 @@ var game = {
 				
 
 			}
-
-			/*if(!game.currentHero.IsAwake() && heroX>=100){
-				setTimeout(function(){
-					box2d.world.DestroyBody(game.currentHero);
-					game.currentHero = undefined;
-					console.log("siguiente personaje");
-					 game.mode="load-next-hero";
-				 },10000);
-			}*/
 
 		}
 		
