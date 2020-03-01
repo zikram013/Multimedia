@@ -138,37 +138,49 @@ var game = {
 			$("#togglemusic")[0].src="nosound.png";
 		}*/
 
-		if(game.backgroundMusicNamek.paused){
-			game.backgroundMusicNamek.play();
-			toggleImage.src="sound.png";
-		}else{
-			game.backgroundMusicNamek.pause();
-			$("#togglemusic")[0].src="nosound.png";
+		if(game.currentLevel.number==1){
+			if(game.backgroundMusicNamek.paused){
+				game.backgroundMusicNamek.play();
+				toggleImage.src="sound.png";
+			}else{
+				game.backgroundMusicNamek.pause();
+				$("#togglemusic")[0].src="nosound.png";
+			}
 		}
+		
 
-		if(game.backgroundMusicBuu.paused){
-			game.backgroundMusicBuu.play();
-			toggleImage.src="sound.png";
-		}else{
-			game.backgroundMusicBuu.pause();
-			$("#togglemusic")[0].src="nosound.png";
+		if(game.currentLevel.number==3){
+			if(game.backgroundMusicBuu.paused){
+				game.backgroundMusicBuu.play();
+				toggleImage.src="sound.png";
+			}else{
+				game.backgroundMusicBuu.pause();
+				$("#togglemusic")[0].src="nosound.png";
+			}
 		}
+		
 
-		if(game.backgroundMusicCell.paused){
-			game.backgroundMusicCell.play();
-			toggleImage.src="sound.png";
-		}else{
-			game.backgroundMusicCell.pause();
-			$("#togglemusic")[0].src="sound.png";
+		if(game.currentLevel.number==2){
+			if(game.backgroundMusicCell.paused){
+				game.backgroundMusicCell.play();
+				toggleImage.src="sound.png";
+			}else{
+				game.backgroundMusicCell.pause();
+				$("#togglemusic")[0].src="sound.png";
+			}
+	
 		}
-
-		if(game.backgroundMusicSaiyan.paused){
-			game.backgroundMusicSaiyan.play();
-			toggleImage.src="sound.png";
-		}else{
-			game.backgroundMusicSaiyan.pause();
-			$("#togglemusic")[0].src="sound.png";
+		
+		if(game.currentLevel.number==0){
+			if(game.backgroundMusicSaiyan.paused){
+				game.backgroundMusicSaiyan.play();
+				toggleImage.src="sound.png";
+			}else{
+				game.backgroundMusicSaiyan.pause();
+				$("#togglemusic")[0].src="sound.png";
+			}
 		}
+		
 
 	},
 	showLevelScreen:function(){
