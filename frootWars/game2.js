@@ -79,7 +79,9 @@ var game = {
 		game.context = game.canvas.getContext('2d');
 	},	  
 	startBackgroundMusic:function(){
-		var toggleImage = $("#togglemusic")[0];	
+		var toggleImage = $("#togglemusic")[0];
+
+
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.play();
 			toggleImage.src="images/sound.png";
