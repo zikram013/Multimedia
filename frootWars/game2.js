@@ -365,9 +365,9 @@ var game = {
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
 
-			if(heroX>100){
+			if(heroX>15|| !game.currentHero.IsAwake()){
 				setTimeout(function(){
-					if(heroX>100 || !game.currentHero.IsAwake()){
+					if(heroX>15 || !game.currentHero.IsAwake()|| heroX >game.currentLevel.foregroundImage.width){
 						box2d.world.DestroyBody(game.currentHero);
 						game.currentHero = undefined;
 						console.log("siguiente personaje");
@@ -378,8 +378,9 @@ var game = {
 				 game.mode="load-next-hero";
 			}
 
-			if(!game.currentHero.IsAwake() || heroX<100 || heroX >game.currentLevel.foregroundImage.width){
-			
+			if(!game.currentHero.IsAwake() || heroX<15 || heroX >game.currentLevel.foregroundImage.width){
+
+
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
 			
