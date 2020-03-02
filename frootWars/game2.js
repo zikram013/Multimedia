@@ -9,6 +9,8 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
+var blockedLevel=0;
+
 
 
 (function() {
@@ -21,6 +23,7 @@ var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 	}
  
 	if (!window.requestAnimationFrame)
+	
 		window.requestAnimationFrame = function(callback, element) {
 			var currTime = new Date().getTime();
 			var timeToCall = Math.max(0, 16 - (currTime - lastTime));
@@ -186,7 +189,41 @@ var game = {
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
+		var html = "";
+		switch (blockedLevel) {
+			case 0:
+				html += '<input type="button" value="'+(1)+'">';
+				break;
+			case 1:
+				html += '<input type="button" value="'+(1)+'">';
+				html += '<input type="button" value="'+(2)+'">';
+				break;
+			case 2:
+				html += '<input type="button" value="'+(1)+'">';
+				html += '<input type="button" value="'+(2)+'">';
+				html += '<input type="button" value="'+(3)+'">';
+				break;
+			case 3:
+				html += '<input type="button" value="'+(1)+'">';
+				html += '<input type="button" value="'+(2)+'">';
+				html += '<input type="button" value="'+(3)+'">';
+				html += '<input type="button" value="'+(4)+'">';
+				break;		
+			default:
+				break;
+		}
+		$('#levelselectscreen').html(html);
+		$('#levelselectscreen input').click(function(){
+			levels.load(this.value-1);
+			$('#levelselectscreen').hide();
+		});
+		console.log("eyo");
+		
+		//$('#levelselectscreen').html(html);
+	},
 
+	showLevelBlocked:function(){
+		
 	},
 
 	//volver a pantalla inicio
@@ -370,22 +407,12 @@ var game = {
 		
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
+			console.log(heroX);
+		
+			
+			 if(!game.currentHero.IsAwake() || heroX<15 ||  heroX >game.currentLevel.foregroundImage.width){
 
-			if(heroX>15|| !game.currentHero.IsAwake()){
-				setTimeout(function(){
-					if(heroX>15 || !game.currentHero.IsAwake()|| heroX >game.currentLevel.foregroundImage.width){
-						box2d.world.DestroyBody(game.currentHero);
-						game.currentHero = undefined;
-						console.log("siguiente personaje");
-						
-					}
-					
-				 },5000);
-				 game.mode="load-next-hero";
-			}
-
-			if(!game.currentHero.IsAwake() || heroX<15 || heroX >game.currentLevel.foregroundImage.width){
-
+				
 
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
@@ -393,6 +420,19 @@ var game = {
 				game.mode = "load-next-hero";
 				
 
+			} else{
+				
+				setTimeout(function(){
+					//if(heroX>15 || !game.currentHero.IsAwake()|| heroX >game.currentLevel.foregroundImage.width){
+						game.mode="load-next-hero";	
+					if(!game.currentHero.IsAwake()) box2d.world.DestroyBody(game.currentHero);
+						game.currentHero = undefined;
+						//console.log("siguiente personaje");
+						//
+					//}
+				 },2500);
+				 
+				 //game.mode="load-next-hero";
 			}
 
 		}
@@ -440,7 +480,12 @@ var game = {
 	  	},
 		showEndingScreen:function(){
 			game.stopBackgroundMusic();				
-			if (game.mode=="level-success"){			
+			if (game.mode=="level-success"){	
+				console.log("block"+blockedLevel);
+				var aux = game.currentLevel.number + 1;
+				if(aux>blockedLevel){
+					blockedLevel++;
+				}		
 				if(game.currentLevel.number<levels.data.length-1){
 					$('#endingmessage').html('Level Complete. Well Done!!!');
 					$("#playnextlevel").show();
@@ -589,7 +634,7 @@ var levels = {
 			{type:"hero",name:"SagaSaiyanGohan",x:150,y:405},
 			{type:"hero",name:"carapiccolo2",x:120,y:405},
 			{type:"hero",name:"krilinRecortadoCircular",x:90,y:405},
-			//{type:"hero",name:"chaosCaraRecortada",x:60,y:405},
+			{type:"hero",name:"chaosCaraRecortada",x:60,y:405},
 			{type:"hero",name:"yamchacararecortada",x:0,y:405},
 			{type:"hero",name:"tenshinhancararecortada",x:60,y:405},
 			{type:"hero",name:"caragokurecortadacircular",x:30,y:405},
@@ -746,20 +791,20 @@ var levels = {
 		}
 	],
 
-
 	init:function(){
-		var html = "";
+		/*var html = "";
 		for (var i=0; i < levels.data.length; i++) {
 			var level = levels.data[i];
 			html += '<input type="button" value="'+(i+1)+'">';
 		};
+		html += '<input type="button" value="'+(1)+'">';
 		$('#levelselectscreen').html(html);
 		
 	
 		$('#levelselectscreen input').click(function(){
 			levels.load(this.value-1);
 			$('#levelselectscreen').hide();
-		});
+		});*/
 	},
 
 
@@ -775,8 +820,7 @@ var levels = {
 		var level = levels.data[number];
 
 		
-
-
+	
 	
 		game.currentLevel.backgroundImage = loader.loadImage("images/"+level.background+".png");
 		game.currentLevel.foregroundImage = loader.loadImage("images/"+level.foreground+".png");
