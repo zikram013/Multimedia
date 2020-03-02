@@ -700,7 +700,7 @@ var levels = {
 		{
 			//Cuarto nivel
 			foreground:'planetaSagrado-foreground',
-			background:'clouds-background',
+			background:'planetaSagrado-foreground',
 			
 
 			entities:[
