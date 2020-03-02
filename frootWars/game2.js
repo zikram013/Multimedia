@@ -50,22 +50,22 @@ var game = {
 		loader.init();
 		mouse.init();
 		
-		game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
+		game.backgroundMusicMain=loader.loadSound('sounds/chalaInstrumental');
 		
-		game.backgroundMusicSaiyan=loader.loadSound('dragonballzbudokaitenkaichi');
-		game.backgroundMusicNamek=loader.loadSound('luzfuegodestruccion');
-		game.backgroundMusicCell=loader.loadSound('dbgt');
-		game.backgroundMusicBuu=loader.loadSound('dragonballzbudokai3');
+		game.backgroundMusicSaiyan=loader.loadSound('sounds/dragonballzbudokaitenkaichi');
+		game.backgroundMusicNamek=loader.loadSound('sounds/luzfuegodestruccion');
+		game.backgroundMusicCell=loader.loadSound('sounds/dbgt');
+		game.backgroundMusicBuu=loader.loadSound('sounds/dragonballzbudokai3');
 
-		game.slingshotReleasedSound = loader.loadSound("released");
-		game.bounceSound = loader.loadSound('bounce');
+		game.slingshotReleasedSound = loader.loadSound("sounds/released");
+		game.bounceSound = loader.loadSound('sounds/bounce');
 	
-		game.kiSound=loader.loadSound('dbz-ki');
+		game.kiSound=loader.loadSound('sounds/dbz-ki');
 
 
 		game.breakSound = {
-			"glass":loader.loadSound('glassbreak'),
-			"wood":loader.loadSound('woodbreak'),
+			"glass":loader.loadSound('sounds/glassbreak'),
+			"wood":loader.loadSound('sounds/woodbreak'),
 			
 		};
 
