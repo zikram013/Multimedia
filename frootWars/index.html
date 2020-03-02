@@ -18,8 +18,8 @@
             <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
             
             <div id="scorescreen" class="gamelayer">
-                <img id="togglemusic" src="images/sound.png" onclick="game.toggleBackgroundMusic();">
-                <img src="images/prev.png " onclick="game.restartLevel();">
+                <img id="togglemusic" src="images/sound.png" alt="" onclick="game.toggleBackgroundMusic();">
+                <img src="images/prev.png" alt="" onclick="game.restartLevel();">
                 <span id="score">Score: 0</span>
             </div>
             
@@ -37,7 +37,7 @@
             
 
             <div id="settingsscreen" class="gamelayer">
-                <img src="images/prev.png " onclick="game.mainScreen();">
+                <img src="images/prev.png" alt="" onclick="game.mainScreen();">
                 <p id="textoBotonPantalla"><strong>PONER/QUITAR PANTALLA COMPLETA</strong></p>
                 <img id="botonesPantalla" alt="Pantalla Completa" src="images/fullScreen.png" onclick="game.launchFullScreen(document.documentElement);">
                 <img id="botonesPantalla" alt="Quitar Pantalla Completa" src="images/normalScreen.png" onclick="game.exitFullScreen(document.documentElement);">
@@ -51,9 +51,9 @@
             <div id="endingscreen" class="gamelayer">
                 <div>
                     <p id="endingmessage">The level is over message</p>
-                    <p id="playcurrentlevel" onclick="game.restartLevelFin();"><img src="images/prev.png">Replay Currente Level</p>
-                    <p id="playnextlevel"onclick="game.startNextLevel();"><img src="images/next.png">Play next level Level</p>
-                    <p id="showLevelScreen"onclick="game.showLevelScreen();"><img src="images/return.png">Return to Level screen</p>
+                    <p id="playcurrentlevel" onclick="game.restartLevelFin();"><img src="images/prev.png"alt="">Replay Currente Level</p>
+                    <p id="playnextlevel"onclick="game.startNextLevel();"><img src="images/next.png"alt="">Play next level Level</p>
+                    <p id="showLevelScreen"onclick="game.showLevelScreen();"><img src="images/return.png"alt="">Return to Level screen</p>
                 </div>
             </div>
 
