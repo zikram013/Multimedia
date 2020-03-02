@@ -1,7 +1,7 @@
 #gamecontainer{
     width: 640px;
     height: 480px;
-    background: url(maindragonball.png);
+    background: url(images/maindragonball.png);
     border: 1px solid black;
 }
 
@@ -36,7 +36,7 @@
 
 
 #levelselectscreen{
-    background: url(gokuandvegeta.png);
+    background: url(images/gokuandvegeta.png);
     width: 590px;
     height: 330px;
     padding-top:150px;
@@ -49,7 +49,7 @@
 #levelselectscreen input{
     margin:20px;
     cursor:pointer;
-    background: url(bolanivel.png)no-repeat;
+    background: url(images/bolanivel.png)no-repeat;
     border-radius: 100%;
     color:black;
     font-size:20px;
@@ -69,7 +69,7 @@
     text-align: center;
     height: 48px;
     color:white;
-    background: url(laoding.gif)no-repeat center;
+    background: url(images/laoding.gif)no-repeat center;
     font-size:12px;
     font-family: Arial;
 }
@@ -129,7 +129,7 @@ endingscreen {
 
 /*Pantalla de settings*/
 #settingsscreen{
-    background-image: url(bulma.png);
+    background-image: url(images/bulma.png);
     width: 640px;
     height: 480px;
     

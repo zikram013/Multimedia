@@ -82,18 +82,18 @@ var game = {
 		var toggleImage = $("#togglemusic")[0];	
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.play();
-			toggleImage.src="sound.png";
+			toggleImage.src="images/sound.png";
 
 		}else if(game.currentLevel.number==2){
 			game.backgroundMusicCell.play();
-			toggleImage.src="sound.png";
+			toggleImage.src="images/sound.png";
 		
 		}else if(game.currentLevel.number==1){
 			game.backgroundMusicBuu.play();
-			toggleImage.src="sound.png";
+			toggleImage.src="images/sound.png";
 		}else if(game.currentLevel.number==0){
 			game.backgroundMusicSaiyan.play();
-			toggleImage.src="sound.png";
+			toggleImage.src="images/sound.png";
 		}
 		
 		
@@ -140,10 +140,10 @@ var game = {
 		if(game.currentLevel.number==1){
 			if(game.backgroundMusicNamek.paused){
 				game.backgroundMusicNamek.play();
-				toggleImage.src="sound.png";
+				toggleImage.src="images/sound.png";
 			}else{
 				game.backgroundMusicNamek.pause();
-				$("#togglemusic")[0].src="nosound.png";
+				$("#togglemusic")[0].src="images/nosound.png";
 			}
 		}
 		
@@ -151,10 +151,10 @@ var game = {
 		if(game.currentLevel.number==3){
 			if(game.backgroundMusicBuu.paused){
 				game.backgroundMusicBuu.play();
-				toggleImage.src="sound.png";
+				toggleImage.src="images/sound.png";
 			}else{
 				game.backgroundMusicBuu.pause();
-				$("#togglemusic")[0].src="nosound.png";
+				$("#togglemusic")[0].src="images/nosound.png";
 			}
 		}
 		
@@ -162,10 +162,10 @@ var game = {
 		if(game.currentLevel.number==2){
 			if(game.backgroundMusicCell.paused){
 				game.backgroundMusicCell.play();
-				toggleImage.src="sound.png";
+				toggleImage.src="images/sound.png";
 			}else{
 				game.backgroundMusicCell.pause();
-				$("#togglemusic")[0].src="sound.png";
+				$("#togglemusic")[0].src="images/sound.png";
 			}
 	
 		}
@@ -173,10 +173,10 @@ var game = {
 		if(game.currentLevel.number==0){
 			if(game.backgroundMusicSaiyan.paused){
 				game.backgroundMusicSaiyan.play();
-				toggleImage.src="sound.png";
+				toggleImage.src="images/sound.png";
 			}else{
 				game.backgroundMusicSaiyan.pause();
-				$("#togglemusic")[0].src="sound.png";
+				$("#togglemusic")[0].src="images/sound.png";
 			}
 		}
 		
@@ -771,13 +771,13 @@ var levels = {
 
 
 	
-		game.currentLevel.backgroundImage = loader.loadImage(level.background+".png");
-		game.currentLevel.foregroundImage = loader.loadImage(level.foreground+".png");
+		game.currentLevel.backgroundImage = loader.loadImage("images/"+level.background+".png");
+		game.currentLevel.foregroundImage = loader.loadImage("images/"+level.foreground+".png");
 		
 	
 
-		game.slingshotImage = loader.loadImage("slingshot.png");
-		game.slingshotFrontImage = loader.loadImage("slingshot-front.png");
+		game.slingshotImage = loader.loadImage("images/slingshot.png");
+		game.slingshotFrontImage = loader.loadImage("images/slingshot-front.png");
 
 	
 		for (var i = level.entities.length - 1; i >= 0; i--){	
@@ -1168,7 +1168,7 @@ var entities = {
 
 			case "ki": // entidad ki
 				entity.shape = "rectangle";	
-				entity.sprite = loader.loadImage(entity.name+".png");						
+				entity.sprite = loader.loadImage("images/"+entity.name+".png");						
 				entity.kiSound = game.kiSound;
 				box2d.createRectangle(entity,definition);				
 				break;
@@ -1177,7 +1177,7 @@ var entities = {
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
 				entity.shape = "rectangle";	
-				entity.sprite = loader.loadImage(entity.name+".png");						
+				entity.sprite = loader.loadImage("images/"+entity.name+".png");						
 				entity.breakSound = game.breakSound[entity.name];
 				box2d.createRectangle(entity,definition);				
 				break;
@@ -1189,7 +1189,7 @@ var entities = {
 			case "villain": 
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
-				entity.sprite = loader.loadImage(entity.name+".png");
+				entity.sprite = loader.loadImage("images/"+entity.name+".png");
 				entity.shape = definition.shape;  
 				entity.bounceSound = game.bounceSound;
 				if(definition.shape == "circle"){

@@ -18,8 +18,8 @@
             <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
             
             <div id="scorescreen" class="gamelayer">
-                <img id="togglemusic" src="sound.png" onclick="game.toggleBackgroundMusic();">
-                <img src="prev.png " onclick="game.restartLevel();">
+                <img id="togglemusic" src="images/sound.png" onclick="game.toggleBackgroundMusic();">
+                <img src="images/prev.png " onclick="game.restartLevel();">
                 <span id="score">Score: 0</span>
             </div>
             
@@ -27,8 +27,8 @@
                
 
 
-                <img src="play.png" alt="Play Game" onclick="game.showLevelScreen();"></br>
-                <img src="settings.png" alt="Settings" onclick="game.showSettingsScreen();">
+                <img src="images/play.png" alt="Play Game" onclick="game.showLevelScreen();"></br>
+                <img src="images/settings.png" alt="Settings" onclick="game.showSettingsScreen();">
             </div>
 
             <div id="levelselectscreen" class="gamelayer2">               
@@ -37,10 +37,10 @@
             
 
             <div id="settingsscreen" class="gamelayer">
-                <img src="prev.png " onclick="game.mainScreen();">
+                <img src="images/prev.png " onclick="game.mainScreen();">
                 <p id="textoBotonPantalla"><strong>PONER/QUITAR PANTALLA COMPLETA</strong></p>
-                <img id="botonesPantalla" alt="Pantalla Completa" src="fullScreen.png" onclick="game.launchFullScreen(document.documentElement);">
-                <img id="botonesPantalla" alt="Quitar Pantalla Completa" src="normalScreen.png" onclick="game.exitFullScreen(document.documentElement);">
+                <img id="botonesPantalla" alt="Pantalla Completa" src="images/fullScreen.png" onclick="game.launchFullScreen(document.documentElement);">
+                <img id="botonesPantalla" alt="Quitar Pantalla Completa" src="images/normalScreen.png" onclick="game.exitFullScreen(document.documentElement);">
                 
             </div>
 
@@ -51,9 +51,9 @@
             <div id="endingscreen" class="gamelayer">
                 <div>
                     <p id="endingmessage">The level is over message</p>
-                    <p id="playcurrentlevel" onclick="game.restartLevel();"><img src="prev.png">Replay Currente Level</p>
-                    <p id="playnextlevel"onclick="game.startNextLevel();"><img src="next.png">Play next level Level</p>
-                    <p id="showLevelScreen"onclick="game.showLevelScreen();"><img src="return.png">Return to Level screen</p>
+                    <p id="playcurrentlevel" onclick="game.restartLevel();"><img src="images/prev.png">Replay Currente Level</p>
+                    <p id="playnextlevel"onclick="game.startNextLevel();"><img src="images/next.png">Play next level Level</p>
+                    <p id="showLevelScreen"onclick="game.showLevelScreen();"><img src="images/return.png">Return to Level screen</p>
                 </div>
             </div>
 
