@@ -38,7 +38,6 @@ var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
 $(window).load(function() {
 	game.init();
-	//game.backgroundMusicMain=loader.loadSound('chalaInstrumental');
 
 });
 
@@ -340,14 +339,14 @@ var game = {
 			if(mouse.down){
 				game.panTo(game.slingshotX);
 				var distance = Math.sqrt(Math.pow(mouse.x-mouse.downX,2) + Math.pow(mouse.y-mouse.downY,2));
-				var maxDistance = 130;
+				var maxDistance = 1300;
 				if (maxDistance > distance){
 					game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
 				} else {
 					var angle = Math.atan2(mouse.y-mouse.downY,mouse.x-mouse.downX);
 					game.currentHero.SetPosition({x:(mouse.downX + maxDistance * Math.cos(angle)+game.offsetLeft)/box2d.scale,y:(mouse.downY + maxDistance * Math.sin(angle))/box2d.scale});
 				}				
-				//game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
+				game.currentHero.SetPosition({x:(mouse.x+game.offsetLeft)/box2d.scale,y:mouse.y/box2d.scale});
 			} else {
 				game.mode = "fired";
 				game.slingshotReleasedSound.play();								
@@ -520,8 +519,8 @@ var game = {
 		}
 	},
 	drawSlingshotBand:function(){
-		game.context.strokeStyle = "rgb(68,31,11)"; // Color marrÃ³n oscuro
-		game.context.lineWidth = 6; // Dibuja una lÃ­nea gruesa
+		game.context.strokeStyle = "rgb(68,31,11)"; 
+		game.context.lineWidth = 6; 
 
 		
 		var radius = game.currentHero.GetUserData().radius;
