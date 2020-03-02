@@ -107,7 +107,7 @@ var game = {
 	},
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
-		toggleImage.src="nosound.png";	
+		toggleImage.src="images/nosound.png";	
 		if(game.currentLevel.number==3){
 			game.backgroundMusicNamek.pause();
 			game.backgroundMusicNamek.currTime=0;
@@ -229,6 +229,11 @@ var game = {
 		game.lastUpdateTime = undefined;
 		levels.load(game.currentLevel.number);
 	},
+
+	restartLevelFin:function(){
+		levels.load(game.currentLevel.number);
+	},
+
 	startNextLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
 		game.lastUpdateTime = undefined;
