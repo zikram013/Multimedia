@@ -100,12 +100,6 @@ var game = {
 			toggleImage.src="images/sound.png";
 		}
 		
-		
-		
-		/*else{
-			game.backgroundMusic.play();
-			toggleImage.src="sound.png";
-		}*/
 
 			
 	},
@@ -113,7 +107,6 @@ var game = {
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="images/nosound.png";	
 		if(game.currentLevel.number==1){
-			console.log("para musica")
 			game.backgroundMusicNamek.pause();
 			game.backgroundMusicNamek.currTime=0;
 		}else if(game.currentLevel.number==2){
@@ -427,11 +420,13 @@ var game = {
 
 			} else{
 				
+				
 				setTimeout(function(){
 					//if(heroX>15 || !game.currentHero.IsAwake()|| heroX >game.currentLevel.foregroundImage.width){
+						
 						game.mode="load-next-hero";	
 					if(!game.currentHero) box2d.world.DestroyBody(body);
-						if(game.currentHero!=undefined){
+						if(body!=undefined){
 							game.currentHero = undefined;
 						}
 						
@@ -441,7 +436,7 @@ var game = {
 				 },2500);
 				 
 				 //game.mode="load-next-hero";
-			}
+				}
 
 		}
 		
