@@ -685,6 +685,7 @@ var levels = {
 				{type:"hero",name:"SagaSaiyanGohan",x:100,y:405},
 				{type:"hero",name:"caravegetarecortadacircular",x:70,y:405},
 				{type:"hero",name:"caragokusaiyan1recortadacircular",x:40,y:405},
+				{type:"hero",name:"carapiccolo2",x:10,y:405}
 
 				{type:"villain", name:"freezerKi", x:900,y:300,calories:1000},
 				{type:"villain", name:"Ginyu", x:780,y:195,calories:1000},
