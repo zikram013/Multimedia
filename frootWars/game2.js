@@ -84,7 +84,7 @@ var game = {
 		var toggleImage = $("#togglemusic")[0];
 
 
-		if(game.currentLevel.number==3){
+		if(game.currentLevel.number==1){
 			game.backgroundMusicNamek.play();
 			toggleImage.src="images/sound.png";
 
@@ -92,7 +92,7 @@ var game = {
 			game.backgroundMusicCell.play();
 			toggleImage.src="images/sound.png";
 		
-		}else if(game.currentLevel.number==1){
+		}else if(game.currentLevel.number==3){
 			game.backgroundMusicBuu.play();
 			toggleImage.src="images/sound.png";
 		}else if(game.currentLevel.number==0){
@@ -112,13 +112,14 @@ var game = {
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="images/nosound.png";	
-		if(game.currentLevel.number==3){
+		if(game.currentLevel.number==1){
+			console.log("para musica")
 			game.backgroundMusicNamek.pause();
 			game.backgroundMusicNamek.currTime=0;
 		}else if(game.currentLevel.number==2){
 			game.backgroundMusicCell.pause();
 			game.backgroundMusicCell.currTime=0;
-		}else if(game.currentLevel.number==1){
+		}else if(game.currentLevel.number==3){
 			game.backgroundMusicBuu.pause();
 			game.backgroundMusicBuu.currentTime=0;
 		}else if(game.currentLevel.number==0){
@@ -133,6 +134,7 @@ var game = {
 	},
 	toggleBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];
+		
 		/*if(game.backgroundMusic.paused){
 			game.backgroundMusic.play();
 			toggleImage.src="sound.png";	
@@ -146,6 +148,7 @@ var game = {
 				game.backgroundMusicNamek.play();
 				toggleImage.src="images/sound.png";
 			}else{
+			
 				game.backgroundMusicNamek.pause();
 				$("#togglemusic")[0].src="images/nosound.png";
 			}
@@ -1480,12 +1483,27 @@ var loader = {
 	},
 	soundFileExtn:".ogg",
 	loadSound:function(url){
-		this.totalCount++;
+		/*this.totalCount++;
 		this.loaded = false;
 		$('#loadingscreen').show();
 		var audio = new Audio();
 		audio.src = url+loader.soundFileExtn;
 		audio.addEventListener("canplaythrough", loader.itemLoaded, false);
+		return audio;*/
+		var audio = new Audio();
+		if(!loader.soundFileExtn){
+			return audio;
+		}
+
+		this.totalCount++;
+		loader.updateStatus();
+		this.loaded = false;
+		$('#loadingscreen').show();
+		audio.addEventListener("canplaythrough", loader.itemLoaded, false);
+	
+		audio.preload = "auto";
+		audio.src = url+loader.soundFileExtn;
+		audio.load();
 		return audio;   
 	},
 	/*
