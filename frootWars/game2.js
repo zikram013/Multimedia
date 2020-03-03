@@ -187,6 +187,7 @@ var game = {
 
 	},
 	showLevelScreen:function(){
+		
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
 		var html = "";
@@ -212,6 +213,7 @@ var game = {
 			default:
 				break;
 		}
+		
 		$('#levelselectscreen').html(html);
 		$('#levelselectscreen input').click(function(){
 			levels.load(this.value-1);
@@ -694,7 +696,7 @@ var levels = {
 				{type:"villain", name:"Ginyu", x:780,y:195,calories:1000},
 				{type:"villain", name:"dodoria", x:501.5,y:290,calories:1000},
 				{type:"villain", name:"burter", x:501.5,y:109.5,calories:1000},
-				{type:"villain",name:"jeice", x:675,y:350,calories:1000},
+				//{type:"villain",name:"jeice", x:675,y:350,calories:1000},
 
 			]
 	},
@@ -851,13 +853,13 @@ var levels = {
 var entities = {
 	definitions:{
 		"glass":{
-			fullHealth:100,
+			fullHealth:50,
 			density:2.4,
 			friction:0.4,
 			restitution:0.15,
 		},
 		"wood":{
-			fullHealth:500,
+			fullHealth:100,
 			density:0.7,
 			friction:0.4,
 			restitution:0.4,
@@ -1461,8 +1463,8 @@ var loader = {
 	itemLoaded:function(){
 		loader.loadedCount++;
 		$('#loadingmessage').html('Loaded '+loader.loadedCount+' of '+loader.totalCount);
-		if (loader.loadedCount === loader.totalCount){
-			
+		if (loader.loadedCount >= loader.totalCount){
+		
 			loader.loaded = true;
 			
 			$('#loadingscreen').hide();
