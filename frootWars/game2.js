@@ -409,7 +409,7 @@ var game = {
 		
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
-			console.log(heroX);
+			//console.log(heroX);
 		
 			var body=game.currentHero;
 			 if(!game.currentHero.IsAwake() || heroX<0 ||  heroX >game.currentLevel.foregroundImage.width){
@@ -556,7 +556,8 @@ var game = {
 				if(entityX<0|| entityX>game.currentLevel.foregroundImage.width||(entity.health && entity.health <0)){
 					box2d.world.DestroyBody(body);
 					if (entity.type=="villain"){
-						game.score += entity.calories;
+						game.score = game.score + entity.calories;
+						console.log("score");
 						$('#score').html('Score: '+game.score);
 					}
 					if (entity.breakSound){
@@ -645,9 +646,9 @@ var levels = {
 			{type:"hero",name:"caragokurecortadacircular",x:30,y:405},
 
 			//villain
-			{type:"villain", name:"Saibaman", x:450,y:277,calories:50},
-			{type:"villain", name:"Saibaman", x:450,y:177,calories:50},
-			{type:"villain", name:"Saibaman", x:450,y:77,calories:50},
+			{type:"villain", name:"Saibaman1", x:450,y:277,calories:50},
+			{type:"villain", name:"Saibaman2", x:450,y:177,calories:50},
+			{type:"villain", name:"Saibaman3", x:450,y:77,calories:50},
 			{type:"villain", name:"nappa", x:731.5,y:39,calories:500},
 			{type:"villain", name:"Raditz", x:651.5,y:204,calories:250},
 			{type:"villain", name:"vegetasagasaiyan", x:865,y:274.5,calories:1000},
@@ -1092,7 +1093,7 @@ var entities = {
 			restitution:0.7,
 		},
 
-		"Saibaman":{
+		"Saibaman1":{
 			shape:"rectangle",
 			fullHealth:50,
 			width:40,
@@ -1100,6 +1101,27 @@ var entities = {
 			density:1,
 			friction:0.5,
 			restitution:0.7,	
+		
+		},
+		"Saibaman2":{
+			shape:"rectangle",
+			fullHealth:50,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,	
+		
+		},
+		"Saibaman3":{
+			shape:"rectangle",
+			fullHealth:50,
+			width:40,
+			height:60,
+			density:1,
+			friction:0.5,
+			restitution:0.7,
+	
 		},
 
 		"Gotenksrecortadocircular":{
