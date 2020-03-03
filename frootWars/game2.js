@@ -409,8 +409,8 @@ var game = {
 			game.panTo(heroX);
 			console.log(heroX);
 		
-			
-			 if(!game.currentHero.IsAwake() || heroX<15 ||  heroX >game.currentLevel.foregroundImage.width){
+			var body=game.currentHero;
+			 if(!game.currentHero.IsAwake() || heroX<0 ||  heroX >game.currentLevel.foregroundImage.width){
 
 				
 
@@ -425,8 +425,11 @@ var game = {
 				setTimeout(function(){
 					//if(heroX>15 || !game.currentHero.IsAwake()|| heroX >game.currentLevel.foregroundImage.width){
 						game.mode="load-next-hero";	
-					if(!game.currentHero.IsAwake()) box2d.world.DestroyBody(game.currentHero);
-						game.currentHero = undefined;
+					if(!game.currentHero) box2d.world.DestroyBody(body);
+						if(game.currentHero!=undefined){
+							game.currentHero = undefined;
+						}
+						
 						//console.log("siguiente personaje");
 						//
 					//}
@@ -685,7 +688,7 @@ var levels = {
 				{type:"hero",name:"SagaSaiyanGohan",x:100,y:405},
 				{type:"hero",name:"caravegetarecortadacircular",x:70,y:405},
 				{type:"hero",name:"caragokusaiyan1recortadacircular",x:40,y:405},
-				{type:"hero",name:"carapiccolo2",x:10,y:405}
+				{type:"hero",name:"carapiccolo2",x:10,y:405},
 
 				{type:"villain", name:"freezerKi", x:900,y:300,calories:1000},
 				{type:"villain", name:"Ginyu", x:780,y:195,calories:1000},
