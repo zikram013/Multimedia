@@ -647,7 +647,7 @@ var levels = {
 			//villain
 			{type:"villain", name:"Saibaman", x:450,y:277,calories:50},
 			{type:"villain", name:"Saibaman", x:450,y:177,calories:50},
-			{type:"villain", name:"Saibaman", x:450,y:77,calories:50,},
+			{type:"villain", name:"Saibaman", x:450,y:77,calories:50},
 			{type:"villain", name:"nappa", x:731.5,y:39,calories:500},
 			{type:"villain", name:"Raditz", x:651.5,y:204,calories:250},
 			{type:"villain", name:"vegetasagasaiyan", x:865,y:274.5,calories:1000},
@@ -740,11 +740,11 @@ var levels = {
 				{type:"hero",name:"trunksrecortadacircular",x:40,y:405},
 
 				//villanos
-				{type:"villain", name:"android17",x:703.05,y:96,calories:590},
-				{type:"villain", name:"android18",x:702.5,y:400,calories:590},
-				{type:"villain", name:"CellJR",x:475,y:257,calories:590},
-				{type:"villain", name:"CellJR",x:605,y:285,calories:590},
-				{type:"villain", name:"perfectCell",x:870,y:257,calories:590},
+				{type:"villain", name:"android17",x:703.05,y:96,calories:1000},
+				{type:"villain", name:"android18",x:702.5,y:400,calories:1000},
+				{type:"villain", name:"CellJR",x:475,y:257,calories:200},
+				{type:"villain", name:"CellJR",x:605,y:285,calories:200},
+				{type:"villain", name:"perfectCell",x:870,y:257,calories:2000},
 			]
 			
 	},
@@ -788,11 +788,11 @@ var levels = {
 				{type:"hero",name:"caragokusaiyan1recortadacircular",x:40,y:405},
 
 				
-				{type:"villain", name:"kidbuu",x:775,y:405,calories:1000},
-				{type:"villain", name:"majinbuu",x:500,y:148,calories:1000},
-				{type:"villain", name:"superbuu",x:625,y:93,calories:1000},
-				{type:"villain", name:"babidi",x:480,y:400,calories:1000},
-				{type:"villain", name:"dabra",x:560,y:400,calories:1000},
+				{type:"villain", name:"kidbuu",x:775,y:405,calories:3000},
+				{type:"villain", name:"majinbuu",x:500,y:148,calories:750},
+				{type:"villain", name:"superbuu",x:625,y:93,calories:1500},
+				{type:"villain", name:"babidi",x:480,y:400,calories:50},
+				{type:"villain", name:"dabra",x:560,y:400,calories:250},
 			]
 		}
 	],
@@ -1441,13 +1441,19 @@ var loader = {
 		loader.soundFileExtn = oggSupport?".ogg":mp3Support?".mp3":undefined;		
 	},
 	
-	loadImage:function(url){
+	loadImage:function(url,callback){
 		this.totalCount++;
+		loader.updateStatus();
 		this.loaded = false;
 		$('#loadingscreen').show();
 		var image = new Image();
 		image.src = url;
-		image.onload = loader.itemLoaded;
+		image.onload = function(ev){
+			loader.itemLoaded(ev);
+			if(callback){
+				callback(image);
+			}
+		};
 		return image;
 	},
 	soundFileExtn:".ogg",
@@ -1460,6 +1466,7 @@ var loader = {
 		audio.addEventListener("canplaythrough", loader.itemLoaded, false);
 		return audio;   
 	},
+	/*
 	itemLoaded:function(){
 		loader.loadedCount++;
 		$('#loadingmessage').html('Loaded '+loader.loadedCount+' of '+loader.totalCount);
@@ -1474,7 +1481,31 @@ var loader = {
 				loader.onload = undefined;
 			}
 		}
+	}*/
+	itemLoaded:function(e){
+		e.target.removeEventListener("canplaythrough",loader.itemLoaded,false);
+		e.target.removeEventListener("canplay",loader.itemLoaded,false);
+		e.target.removeEventListener("loadeddata",loader.itemLoaded,false);
+
+		loader.loadedCount++;
+		loader.updateStatus();
+		if (loader.loadedCount === loader.totalCount){
+			loader.loaded = true;
+			loader.loadedCount = 0;
+			loader.totalCount = 0;
+			$('#loadingscreen').hide();
+			if(loader.onload){
+				loader.onload();
+				loader.onload = undefined;
+			}
+		}
+	},
+	updateStatus:function(){
+		$('#loadingmessage').html('Loading '+loader.loadedCount+' of '+loader.totalCount + '...');
+		var progress = loader.totalCount?Math.round(100*loader.loadedCount/loader.totalCount):100;
+		//$('#progressbar')[0].value = progress;
 	}
+
 }
 
 var mouse = {
