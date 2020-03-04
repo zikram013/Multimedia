@@ -1478,13 +1478,7 @@ var loader = {
 	},
 	soundFileExtn:".ogg",
 	loadSound:function(url){
-		/*this.totalCount++;
-		this.loaded = false;
-		$('#loadingscreen').show();
-		var audio = new Audio();
-		audio.src = url+loader.soundFileExtn;
-		audio.addEventListener("canplaythrough", loader.itemLoaded, false);
-		return audio;*/
+		
 		var audio = new Audio();
 		if(!loader.soundFileExtn){
 			return audio;
@@ -1501,22 +1495,7 @@ var loader = {
 		audio.load();
 		return audio;   
 	},
-	/*
-	itemLoaded:function(){
-		loader.loadedCount++;
-		$('#loadingmessage').html('Loaded '+loader.loadedCount+' of '+loader.totalCount);
-		if (loader.loadedCount >= loader.totalCount){
-		
-			loader.loaded = true;
-			
-			$('#loadingscreen').hide();
-			
-			if(loader.onload){
-				loader.onload();
-				loader.onload = undefined;
-			}
-		}
-	}*/
+	
 	itemLoaded:function(e){
 		e.target.removeEventListener("canplaythrough",loader.itemLoaded,false);
 		e.target.removeEventListener("canplay",loader.itemLoaded,false);
