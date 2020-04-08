@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	<head>
+		<title>Casa Rural</title>
+		<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="../js/formalizarPago.js"></script>
+		<script type="text/javascript" src="../jquery/menuSuperior.js"></script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<!--Barra de Menu Principal-->
+			<div id="barraDeOpciones">
+				<nav>
+					<ul class="barraMenu">
+						<li class="botonMenuPrincipal"><a  id="barraLogo_enlace" href="../html/inicio.html"><img id="barraLogo_img" src="../images/iconos/logo.png"></a></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_quienesSomos"><strong>QUIENES SOMOS</a></strong></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_lugares"><strong>ZONAS DE INTERES</a></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_mapa"><strong>COMO LLEGAR</a></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_casas"><strong>NUESTRA CASA</a></li>
+						<li class="botonMenuPrincipal"><a href="../html/pago.html"><strong>RESERVAS</a></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_actividades"><strong>ACTIVIDADES</a></li>
+						<li class="botonMenuPrincipal"><a href="../html/inicio.html#nombre_ofertas"><strong>CALENDARIO DE OFERTAS</a></li>
+					</ul>
+				</nav>
+			</div>
+			
+			<!--Cabecera de la pagina-->
+			<div class="cabeceraPagina">
+				<br/><br/><p>51.8839087, 1.3327789 Sealand, Sealand</p>
+				<div class="casasRuralesLogo">
+					<img src="../images/iconos/logo.png" title="logo" width="175px" height="175px">
+				</div>
+				<div class="subMenuCabecera">
+					<img src="../images/iconos/nombre.png" title="logo" width="1000px" height="150px">
+				</div>
+			</div>
+			
+			<br/><br/><br/><br/>
+			<!--Elementos del pago-->
+			<div id="tarifa">
+				
+			</div>
+			
+			<div class="pago">
+				<table>
+				<ul id="organizacionPago">
+					<tr>
+						<td><input type="radio" name="temporada" id="temporada"></input><span id="temporada2">Temporada Baja</span></td>
+						<td><input type="radio" name="temporada" id="temporada"></input><span id="temporada1">Temporada Alta</span></td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="bed" id="cama"></input><span id="cama">Cama Doble</span></td>
+						<td><input type="radio" name="bed" id="cama"></input><span id="cama">Cama Individual</span></td>
+					</tr>
+					<tr>
+						<td><strong>¿Desea cama supletoria?</strong></td>
+						<td><input type="radio" name="camaSupletoria" id="camaSupletoria" value="Si" id="cama">SI</td>
+						<td><input type="radio" name="camaSupletoria" id="camaSupletoria" value="No" id="cama">NO</td>
+						<span id="errorCama"></span><br/>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="cuna" id="cuna"></input><span id="craddle">Cuna</span></td>
+					</tr>
+				
+				
+					<tr>
+						<td><span id="precioInicio">El precio base de la habitacion es de 150€</span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>Nombre</strong></td><td><input type="text" name="nombre" id="nombre" placeholder="introduzca su nombre"><span id="errorNombre"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>Primer apellido</strong></td><td><input type="text" name="primerApellido" id="primerApellido" placeholder="Introduzca el primer apellido"><span id="errorPrimerApellido"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>Segundo Apellido</strong></td><td><input type="text" name="segundoApellido" id="segundoApellido" placeholder="Introduzca el segundo apellido"><span id="errorSegundoApellido"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>DNI</strong></td><td><input type="text" name="dni" id="dni" placeholder="Introduzca el DNI"><span id="errorDni"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>Pension Completa/solo Desayuno</strong></td>
+						<td>
+							<input type="radio" name="pension" id="pension" value="Pension Completa">Pension Completa
+							<input type="radio" name="pension" id="pension" value="Desayuno">Solo desayuno
+							<span id="errorPension"></span><br/></td>
+					</tr>
+					<tr>
+						<td><strong>Correo Electronico</strong></td><td><input type="text" name="correo" id="correo" placeholder="Introduzca su correo electronico"><span id="errorCorreo"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>N&uacute;mero de tel&eacute;fono</strong></td><td><input type="text" name="telefono" id="telefono" placeholder="introduzca su numero de telefono"><span id="errorTelefono"></span></td><br/>
+					</tr>
+					<tr>
+						<td><strong>Seleccione metodo de pago</strong></td>
+						<td>
+							<select name="metodoPago" id="metodoPago">
+								<option value="0">--Selecciona una forma de pago--</option>
+								<option value="Transferencia">Transferencia</option>
+								<option value="PagoTarjeta">Pago con tarjeta</option>
+								<option value="PagoContrareembolso">Contrareembolso</option>
+								
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Fecha de entrada:</td><td><input type="date" id="fechaInicio" name="fechaEntrada" required="required"><span id="errorFechaEntrada"></span></td><br/>
+					</tr>
+					<tr>
+						<td>Fecha de Salida:</td><td><input type="date" id="fechaFinal"  name="fechaSalida" required="required"><span id="errorFechaSalida"></span></td><br/>
+					</tr>
+					<tr>
+						<td><input type="button" value="Pagar" onclick="validar()"></td><br/>
+						<span id="pagoTotal"></span>
+					</tr>
+				</table>
+			</ul>
+			</div>
+		</div>
+	</body>
+</html>

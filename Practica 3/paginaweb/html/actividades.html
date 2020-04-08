@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Casa Rural Marmig</title>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+	<link rel="stylesheet" href="../css/jquery-ui-css/jquery-ui.theme.css">
+	<link rel="stylesheet" href="../css/jquery-ui-css/jquery-ui.css">
+	<script type="text/javascript" src="../jquery/menuSuperior.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$( function() {
+			$( "#tabs" ).tabs();
+		} );
+	</script>
+</head>
+<body>
+	<!--Barra de Menu Principal-->
+		<div id="barraDeOpciones">
+			<nav>
+				<ul class="barraMenu">
+					<li class="botonMenuPrincipal"><a  id="barraLogo_enlace" href="../html/inicio.html"><img id="barraLogo_img" src="../images/iconos/logo.png"></a></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_quienesSomos"><strong>QUIENES SOMOS</a></strong></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_lugares"><strong>ZONAS DE INTERES</a></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_mapa"><strong>COMO LLEGAR</a></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_casas"><strong>NUESTRA CASA</a></li>
+					<li class="botonMenuPrincipal"><a href="../html/pago.html"><strong>RESERVAS</a></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_actividades"><strong>ACTIVIDADES</a></li>
+					<li class="botonMenuPrincipal"><a href="#nombre_ofertas"><strong>CALENDARIO DE OFERTAS</a></li>
+				</ul>
+			</nav>
+		</div>
+ 
+ <!----------------------------PESTAÑAS------------------->
+ <br/><br/>
+	<h1>Actividades</h1>
+	<div id="actividadesPagina">
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Media Maratón</a></li>
+				<li><a href="#tabs-2">Viaje en Helicóptero</a></li>
+				<li><a href="#tabs-3">Paseo en Lancha</a></li>
+			</ul>
+			<div id="tabs-1">
+				<img class="imagen_actividad" src="../images/actividades/mediamaraton.jpg"/><h2>Media Maratón en Sealand</h2>
+				<p class="parrafoPestana">La media maratón de sealand es ya un evento que atrae a grandes y pequeños. 
+				Se realiza todos los años el 11 de Septiembre desde el 2015. </p>
+				<p class="parrafoPestana">Ese día se conmemora el día en el que Simon Messenger, 
+				un tío con un blog de correr, decidió venir a Sealand porque se había quedado sin países que le dejaran correr por 
+				alguna razón relacionada con el olor corporal. Desde entonces es una fiesta nacional que todos los amantes del deporte disfrutan. </p>
+				<p class="parrafoPestana">Descarga tu cupón para participar <a href="../descargables/permiso.pdf">aquí.</a></p>
+			</div>
+			<div id="tabs-2">
+				<img class="imagen_actividad" src="../images/actividades/helicoptero.jpg"/><h2>Viaje en Helicóptero Real</h2>
+				<p class="parrafoPestana">El viaje en el real helicóptero de Sealand es una de las actividades más divertidas de la Casa Rural Marmig. </p>
+				<p class="parrafoPestana">Es normalmente una de las actividades más solicitadas, debido principalmente a que es uno de los medios de 
+				transportes básicos aquí en Sealand. Pero además para más diversión la actividad se llevará a cabo junto a un miembro de la familia
+				real de Sealand, que amenizará el viaje con historias del principado así como un concierto de ukelele de curioso y afinado acierto</p>
+				<p class="parrafoPestana">No pierda la oportunidad de apuntarse a este viaje. Las vistas desde el helicóptero incluirán olas, mar, sol, 
+				más mar, mar otra vez y de vez en cuando se ve a Roger la foca coger pelotas de tenis del agua. ¡No se lo pierda!</p>
+				<p class="parrafoPestana">Descarga tu cupón para participar <a href="../descargables/permiso.pdf">aquí.</a></p>
+			</div>
+			<div id="tabs-3">
+				<img class="imagen_actividad" src="../images/actividades/lancha.jpg"/><h2>Paseo en Lancha "Phocidae"</h2>
+				<p class="parrafoPestana">¡Aw aw aw aw aw, rooo rooo rooo rooo! </p>
+				<p class="parrafoPestana">Aw aw aw aw aw (palmeada palmeada). Ruffff ruffff ruffff. Gñomp Gñomp Gñomp Gñomp Gñomp Gñomp Gñomp Gñomp 
+				Gñomp Gñomp Gñomp Gñomp Gñomp (ruido de masticado de sardina). Awwwwww aw aw awwwww awww cro cro cro.</p>
+				<p class="parrafoPestana">Aw Aw eeeeeeeer. Rooo rooo roo ro ro ro ro rrrrrrrrrr. Aw aw aw aw aw awwwwww aw aw aw awwwwww.</p>
+				<p class="parrafoPestana">(Actividad patrocinada por Roger, la foca recogepelotas, ahora chófer a tiempo parcial)
+				<p class="parrafoPestana">Awwww aw aw roooooo ruuffff <a href="../descargables/permiso.pdf">arooo.</a></p>
+			</div>
+		</div>
+	</div>
+ 
+ <!---------------------------------PIE DE PÁGINA------------------------->
+		<div id="fin">
+			<script type="text/javascript" src="../jquery/calendario.js"></script>
+		</div>
+ 
+</body>
+</html>

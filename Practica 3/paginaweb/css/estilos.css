@@ -1,0 +1,448 @@
+
+/*Estilos básicos*/
+body{
+	margin:0;
+	background-color:#0288D1;
+}
+
+head{
+	background-color:#0288D1;
+}
+p{
+	color:white;
+	text-align:center;
+}
+
+h1{
+	text-align: center;
+	font-size:300%;
+	color:white;
+	font:titulos;
+	text-shadow: 2px 2px black;
+}
+
+h2{
+	text-align: center;
+	font-size:200%;
+	color:white;
+	font:titulos;
+	text-shadow: 2px 2px black;
+}
+
+/*------------------- TÍTULO LOGO Y CABECERA -------------------*/
+
+.contenedor{
+	width: 100%;
+	overflow:hidden;
+	margin:0px auto;
+	background-color: #0288D1;
+}
+
+.cabeceraPagina{
+	width: 85%;
+	height: 225px;
+	margin:0px auto;
+	background-color: #0288D1;
+	text-align: center;
+}
+
+.casasRuralesLogo{
+	position:relative;
+	width:30%;
+	height:30%;
+	float:center;
+	left:-5%;
+	
+}
+
+.subMenuCabecera{
+	position:relative;
+	top:-20%;
+}
+
+/*------------------- BARRA DE OPCIONES MENÚ -------------------*/
+
+#barraDeOpciones{
+	position:fixed;
+	z-index:10;
+	width:100%;
+	border-style: solid;
+	border-color:#B3E5FC;
+    border-width: 0px 0px 2px 0px;
+}
+
+#barraLogo_enlace{
+	position:relative;
+	margin:0%;
+	padding:0%;
+	width:50px;
+	height:53px;
+}
+
+#barraLogo_img{
+	vertical-align:top;
+	width:50px;
+	height:45px;
+}
+
+.barraMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #03A9F4;
+}
+
+.botonMenuPrincipal{
+	float:left;
+}
+
+.botonMenuPrincipal a{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.botonMenuPrincipal a:hover{
+	background-color: #B3E5FC;
+}
+
+/* -----------------------------QUIENES SOMOS SLIDER */
+
+.quienesSomosSlider{
+	padding-top:15px;
+	z-index:9;
+	align-content:center;
+	box-shadow:5px 5px 2px;
+	width:100%;
+	height:620px;
+	background-color:#03A9F4;
+	border-style: solid;
+	border-color:#B3E5FC;
+    border-width: 2px 0px 0px 0px;
+}
+
+
+/* -----------------------------LUGARES DE INTERÉS */
+#lugares{
+	position:relative;
+	height: 350px;
+	overflow:auto;
+	position:relative;
+	display: block;
+	padding-right:5%;
+}
+
+.imagenBoton{
+	width: 250px;
+	height: 300px;
+	border-style: solid;
+	border-color:#B3E5FC;
+    border-width: 2px 2px 2px 2px;
+}
+
+.imagenBoton:hover{
+	border-color:white;
+	cursor:pointer;
+}
+
+p.lugarDeInteres_texto{
+	position:absolute;
+	top:240px;
+	padding-left:4px;
+	width:250px;
+	height:49px;
+	color:white;
+	font-size:125%;
+	border-color:#B3E5FC;
+    border-width: 0px 2px 2px 2px;
+	opacity:0.5;
+	background-color:black;
+}
+#lugar1,#lugar2,#lugar3,#lugar4{
+	display: inline-block;
+	vertical-align: top; 
+	font-size: 12px;
+	padding-left:4%;
+	
+}
+#lugar1{
+	left:5%;
+}
+#lugar2{
+	left:35%;
+}
+#lugar3{
+	left:55%;
+}
+#lugar4{
+	left:75%;
+}
+/*-------------------------------MAPA */
+#comoLlegar{
+	height:500px;
+}
+
+#mapa {
+	position:absolute;
+	margin-left:300px;
+	text-align:center;
+	left:27%;
+}
+
+#mapa_texto p{
+	color:white;
+	text-align:left;
+	font-size:125%;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#mapa_texto{
+	position:absolute;
+	margin-right:750px;
+	margin-left:50px;
+	background-color:#03A9F4;
+	box-shadow:5px 5px 2px;
+	border-style: solid;
+	border-color:#B3E5FC;
+	border-width: 2px 2px 2px 2px;
+}
+
+/*------------------------------CASAS DISPONIBLES */
+
+#casasDisponibles {
+	height:1900px;
+	width:100%;
+	background-color:#03A9F4;
+	box-shadow:5px 5px 2px;
+	border-style: solid;
+	border-color:#B3E5FC;
+	border-width: 2px 0px 0px 0px;
+}
+
+#parrafoCasas{
+	color:white;
+	text-align:left;
+	font-size:125%;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.parrafada{
+	text-align:left;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.tipoCasa{
+	position:relative;
+	left:7.5%;
+	width:85%;
+	height:320px;
+	border-style: solid;
+	border-color:#B3E5FC;
+    border-width: 2px 2px 2px 2px;
+}
+
+.tipoCasa .imagenCasas{
+	position:relative;
+	width:300px;
+	height:100%;
+	display:table-cell;
+	vertical-align:top;
+}
+
+.imagenCasas_img {
+	box-shadow:5px 5px 3px;
+	border-style: solid;
+	border-color:#03A9F4;
+    border-width: 2px 2px 2px 2px;
+}
+
+.tipoCasa .parrafoCasas{
+	padding-left:5%;
+	font-size:125%;
+	position:relative;
+	display:table-cell;
+	vertical-align:top;
+	color:white;
+}
+
+video{
+	position:absolute;
+	margin-top: 50px;
+	left:27.5%;
+}
+
+.reservarCasa{
+	position:absolute;
+	text-align:center;
+	width: 300px;
+	margin-top: 600px;
+	margin-left: 500px;
+	background-color:#B3E5FC;
+	font-size:150%;
+	color:#003653;
+	border-style:solid;
+	border-width:2px 2px 2px 2px;
+	border-color:#003653;
+	text-decoration:none;
+}
+
+.reservarCasa:hover{ 
+	border-color:#B3E5FC;
+	color:#B3E5FC;
+	cursor:pointer;
+	background-color:#003653;
+	
+}
+
+/*------------------------------------ACTIVIDADES*/
+#actividades{
+	width:100%;
+	position:relative;
+	margin-top: 100px;
+}
+#link_actividades{
+	text-decoration: none;
+}
+
+#botonActividades{
+	position:relative;
+	left:30%;
+	text-align:center;
+	width:550px;
+	height:35px;
+	margin-bottom: 100px;
+	background-color:#03A9F4;
+	font-size:150%;
+	color:white;
+	border-style:solid;
+	border-width:2px 2px 2px 2px;
+	border-color:black;
+	text-decoration:none;
+}
+
+#botonActividades:hover{
+	border-color:#B3E5FC;
+	color:#B3E5FC;
+	cursor:pointer;
+	text-decoration:none;
+}
+
+
+/*-----------------------------------OFERTAS */
+#ofertas{
+	border-style: solid;
+	border-color:#B3E5FC;
+	border-width: 2px 0px 0px 0px;
+	position:relative;
+	width: 100%;
+	height:700px;
+	top:5%;
+	text-align: center;
+	font-family: arial;
+	color:white;
+	background-color:#03A9F4;
+	box-shadow:5px 5px 2px;
+}
+
+#ofertas .contenidoOfertas{
+	position:relative;
+	width: 100%;
+	height:500px;
+	border-style:solid;
+	border-width:2px 2px 2px 2px;
+	border-color:black;
+	float:right;
+	overflow: auto;
+}
+
+.oferta{
+	width:85%;
+	position: relative;
+	margin-top: 1%;
+	margin-bottom:1%;
+	left: 5%;
+	border-style:solid;
+	border-width:2px 2px 2px 2px;
+	border-color:black;
+}
+
+
+/*-----------------------------------FIN */
+#fin{
+	background-color:#003653;
+	position:relative;
+	z-index:3;
+	height:300px;
+	width: 100%;
+}
+
+/********************************************************************/
+/*																	*/
+/*						PAGINA ACTIVIDADES							*/
+/*																	*/
+/********************************************************************/
+
+.pago{
+	width: 100%;
+	height:500px;
+	position:absolute;
+	font-family: arial;
+	font-size: 12px;
+	background-color:#03A9F4;
+	box-shadow:5px 5px 2px;
+	border-style: solid;
+	border-color:#B3E5FC;
+  border-width: 2px 0px 0px 0px;
+}
+
+#organizacionPago{
+  position: relative;
+  left: 25%;
+	right:25%;
+	margin-top: -10%;
+}
+
+#tarifa{
+	position: relative;
+	left:35%;
+	margin-top: 10%;
+}
+
+/********************************************************************/
+/*																	*/
+/*						PAGINA ACTIVIDADES							*/
+/*																	*/
+/********************************************************************/
+#actividadesPagina{
+	position:relative;
+	top:50px;
+	height:900px;
+}
+
+p.parrafoPestana{
+	color:white;
+	text-align:left;
+	margin-left: 550px;
+}
+
+.imagen_actividad{
+	width:500px;
+	Height:300px;
+	position: relative;
+	float: left;
+	border-style: solid;
+	border-color:#B3E5FC;
+    border-width: 2px 2px 2px 2px;
+}
+
+#tabs{
+	margin-left:100px;
+	margin-right:100px;
+	text-align:left;
+}
